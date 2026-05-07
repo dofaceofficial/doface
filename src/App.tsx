@@ -286,10 +286,8 @@ export default function App() {
           </button>
           
           <button onClick={() => window.open('https://wa.me/6281234567890', '_blank')} className="flex flex-col items-center gap-1.5 flex-1 transition-transform active:scale-95">
-            <div className="w-11 h-11 rounded-full bg-[#25D366] flex items-center justify-center -mt-3 shadow-lg shadow-[#25D366]/30 border-4 border-white">
-              <MessageCircle size={22} color="white" strokeWidth={2.5} />
-            </div>
-            <span className="text-[10px] font-bold" style={{ color: '#25D366' }}>WhatsApp</span>
+            <MessageCircle size={22} color="#c09bab" strokeWidth={2} />
+            <span className="text-[10px] font-bold" style={{ color: '#c09bab' }}>WhatsApp</span>
           </button>
         </div>
       </div>
