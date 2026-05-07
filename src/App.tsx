@@ -69,7 +69,7 @@ const PRODUCTS: Product[] = [
         detail: 'Skin barrier repair'
       },
       {
-        id: 'pan', label: 'Panthenol & Urea', align: 'left', x: '60%', y: '78%',
+        id: 'pan', label: 'Panthenol & Urea', align: 'left', x: '60%', y: '58%',
         detail: 'Soothing & moisturizing'
       },
     ],
