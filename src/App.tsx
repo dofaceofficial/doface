@@ -519,9 +519,9 @@ function ShopPage({ onBack }: { onBack: () => void }) {
             
             {p.id === 'bundle' ? (
               <div className="relative flex items-center justify-center h-[55vh] lg:h-[72vh] w-full float pointer-events-none">
-                 <img src="/Isi/daycream.png" className="absolute left-[8%] sm:left-[22%] lg:left-[15%] bottom-[32%] w-[90px] sm:w-[130px] lg:w-[160px] object-contain rotate-[-15deg] z-10" style={{ filter: 'drop-shadow(-15px 45px 35px rgba(0,0,0,0.25))' }} />
+                 <img src="/Isi/daycream.png" className="absolute left-[8%] sm:left-[22%] lg:left-[15%] bottom-[32%] w-[105px] sm:w-[145px] lg:w-[175px] object-contain rotate-[-15deg] z-10" style={{ filter: 'drop-shadow(-15px 45px 35px rgba(0,0,0,0.25))' }} />
                  <img src="/Isi/facewash.png" className="absolute z-20 h-[280px] sm:h-[380px] lg:h-[480px] object-contain rotate-3 -translate-y-16" style={{ filter: 'drop-shadow(0 50px 45px rgba(0,0,0,0.3))' }} />
-                 <img src="/Isi/nightcream.png" className="absolute right-[8%] sm:right-[22%] lg:right-[15%] bottom-[24%] w-[80px] sm:w-[120px] lg:w-[140px] object-contain rotate-12 z-30" style={{ filter: 'drop-shadow(15px 45px 35px rgba(0,0,0,0.25))' }} />
+                 <img src="/Isi/nightcream.png" className="absolute right-[8%] sm:right-[22%] lg:right-[15%] bottom-[24%] w-[95px] sm:w-[135px] lg:w-[155px] object-contain rotate-12 z-30" style={{ filter: 'drop-shadow(15px 45px 35px rgba(0,0,0,0.25))' }} />
               </div>
             ) : (
               <img src={p.img} alt={p.sub} className="float select-none pointer-events-none rotate-2 lg:rotate-3" style={{ height: 'min(60vh, 480px)', width: 'auto', objectFit: 'contain', filter: 'drop-shadow(0 50px 45px rgba(0,0,0,0.3))' }} draggable={false} />
