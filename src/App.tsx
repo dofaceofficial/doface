@@ -31,11 +31,11 @@ const PRODUCTS: Product[] = [
     img: '/Isi/facewash.png', heroImg: '/Isi/069A4957 (1).jpg',
     accent: '#fd86a5', bg1: '#fff0f7', bg2: '#ffd6ea',
     hotspots: [
-      { id: 'nia',  label: 'Niacinamide',  align: 'right', x: '8%',  y: '25%',
+      { id: 'nia',  label: 'Niacinamide',  align: 'right', x: '15%',  y: '28%',
         detail: 'Membantu mencerahkan & merawat skin barrier' },
-      { id: 'cer',  label: 'Ceramide NP',  align: 'right', x: '8%',  y: '55%',
+      { id: 'cer',  label: 'Ceramide NP',  align: 'right', x: '12%',  y: '58%',
         detail: 'Membantu menjaga & memperbaiki skin barrier' },
-      { id: 'arb',  label: 'Alpha Arbutin', align: 'left', x: '78%', y: '40%',
+      { id: 'arb',  label: 'Alpha Arbutin', align: 'left', x: '72%', y: '45%',
         detail: 'Membantu menyamarkan tampilan noda hitam & meratakan warna kulit' },
     ],
   },
@@ -46,15 +46,15 @@ const PRODUCTS: Product[] = [
     img: '/Isi/daycream.png', heroImg: '/Isi/069A5122.jpg',
     accent: '#f8578c', bg1: '#fff0f5', bg2: '#ffc8dc',
     hotspots: [
-      { id: 'spf',  label: 'UVA & UVB Protection', align: 'left', x: '76%', y: '20%',
+      { id: 'spf',  label: 'UVA & UVB Protection', align: 'left', x: '70%', y: '22%',
         detail: 'Kandungan: Ethylhexyl Methoxycinnamate, Butyl Methoxycinnamate, Oksibenzon, Octocrylene, Titanium Dioxide.' },
-      { id: 'hya',  label: 'Hyaluronic Acid', align: 'right', x: '4%', y: '32%',
+      { id: 'hya',  label: 'Hyaluronic Acid', align: 'right', x: '18%', y: '35%',
         detail: 'Hydration & skin plumping' },
-      { id: 'nia2', label: 'Niacinamide',   align: 'left',  x: '76%', y: '45%',
+      { id: 'nia2', label: 'Niacinamide',   align: 'left',  x: '74%', y: '48%',
         detail: 'Brightening & barrier support' },
-      { id: 'cer2', label: 'Ceramide NP',   align: 'right', x: '4%', y: '58%',
+      { id: 'cer2', label: 'Ceramide NP',   align: 'right', x: '15%', y: '62%',
         detail: 'Skin barrier repair' },
-      { id: 'pan',  label: 'Panthenol & Urea',     align: 'left', x: '76%', y: '70%',
+      { id: 'pan',  label: 'Panthenol & Urea',     align: 'left', x: '72%', y: '75%',
         detail: 'Soothing & moisturizing' },
     ],
   },
@@ -65,11 +65,11 @@ const PRODUCTS: Product[] = [
     img: '/Isi/nightcream.png', heroImg: '/Isi/069A5499.jpg',
     accent: '#c0527a', bg1: '#fef0f7', bg2: '#f9c0d8',
     hotspots: [
-      { id: 'ret',  label: 'Retinaldehyde', align: 'left',  x: '76%', y: '25%',
+      { id: 'ret',  label: 'Retinaldehyde', align: 'left',  x: '72%', y: '28%',
         detail: 'Anti-aging aktif. Membantu mempercepat regenerasi kulit. Membantu menyamarkan garis halus & tanda penuaan.' },
-      { id: 'col',  label: 'Hydrolyzed Collagen',  align: 'right', x: '4%',  y: '42%',
+      { id: 'col',  label: 'Hydrolyzed Collagen',  align: 'right', x: '18%',  y: '45%',
         detail: 'Membantu melembapkan & meningkatkan elastisitas tampilan kulit.' },
-      { id: 'nia3', label: 'Niacinamide',    align: 'right', x: '4%',  y: '65%',
+      { id: 'nia3', label: 'Niacinamide',    align: 'right', x: '15%',  y: '68%',
         detail: 'Membantu mencerahkan, memperkuat skin barrier & meratakan warna kulit.' },
     ],
   },
@@ -519,9 +519,9 @@ function ShopPage({ onBack }: { onBack: () => void }) {
             
             {p.id === 'bundle' ? (
               <div className="relative flex items-center justify-center h-[55vh] lg:h-[72vh] w-full float pointer-events-none">
-                 <img src="/Isi/daycream.png" className="absolute left-[8%] sm:left-[22%] lg:left-[15%] bottom-[32%] w-[110px] sm:w-[150px] lg:w-[180px] object-contain -rotate-12 z-10" style={{ filter: 'drop-shadow(-15px 45px 35px rgba(0,0,0,0.25))' }} />
+                 <img src="/Isi/daycream.png" className="absolute left-[8%] sm:left-[22%] lg:left-[15%] bottom-[32%] w-[90px] sm:w-[130px] lg:w-[160px] object-contain rotate-[-15deg] z-10" style={{ filter: 'drop-shadow(-15px 45px 35px rgba(0,0,0,0.25))' }} />
                  <img src="/Isi/facewash.png" className="absolute z-20 h-[280px] sm:h-[380px] lg:h-[480px] object-contain rotate-3 -translate-y-16" style={{ filter: 'drop-shadow(0 50px 45px rgba(0,0,0,0.3))' }} />
-                 <img src="/Isi/nightcream.png" className="absolute right-[8%] sm:right-[22%] lg:right-[15%] bottom-[24%] w-[100px] sm:w-[140px] lg:w-[160px] object-contain rotate-12 z-30" style={{ filter: 'drop-shadow(15px 45px 35px rgba(0,0,0,0.25))' }} />
+                 <img src="/Isi/nightcream.png" className="absolute right-[8%] sm:right-[22%] lg:right-[15%] bottom-[24%] w-[80px] sm:w-[120px] lg:w-[140px] object-contain rotate-12 z-30" style={{ filter: 'drop-shadow(15px 45px 35px rgba(0,0,0,0.25))' }} />
               </div>
             ) : (
               <img src={p.img} alt={p.sub} className="float select-none pointer-events-none rotate-2 lg:rotate-3" style={{ height: 'min(60vh, 480px)', width: 'auto', objectFit: 'contain', filter: 'drop-shadow(0 50px 45px rgba(0,0,0,0.3))' }} draggable={false} />
