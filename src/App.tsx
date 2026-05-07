@@ -269,7 +269,7 @@ export default function App() {
 
       {/* Persistent Bottom Nav (Floating Aesthetic) */}
       <div className="lg:hidden shrink-0 bg-white/80 backdrop-blur-3xl border-t border-[#fd86a5]/10 relative z-50">
-        <div className="flex items-center justify-around px-4 pb-8 pt-4">
+        <div className="flex items-center justify-around px-4 pb-4 pt-3">
           <button onClick={() => setView('landing')} className="flex flex-col items-center gap-1.5 flex-1 relative">
             {view === 'landing' && <motion.div layoutId="nav-pill" className="absolute -inset-x-2 -inset-y-1 bg-[#fd86a5]/10 rounded-xl" />}
             <Home size={22} color={view === 'landing' ? '#fd86a5' : '#c09bab'} strokeWidth={view === 'landing' ? 2.5 : 2} />
