@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingBag, Plus, Minus, Star, X, ChevronLeft, ChevronRight, ArrowRight, ShieldCheck, Droplets, Leaf, Clock, Home, MessageCircle } from 'lucide-react';
+import { ShoppingBag, Plus, Minus, Star, X, ChevronLeft, ChevronRight, ArrowRight, ShieldCheck, Droplets, Leaf, Clock, Home, MessageCircle, Sparkles, Sun, Moon, Wind } from 'lucide-react';
 
 /* ─────────── DATA ─────────── */
 interface Hotspot {
@@ -8,7 +8,7 @@ interface Hotspot {
   x: string; y: string; align: 'left' | 'right';
 }
 interface Product {
-  id: string; emoji: string; name: string; sub: string;
+  id: string; icon: any; name: string; sub: string;
   size: string; price: number; originalPrice?: number; desc: string;
   img: string; heroImg: string;
   accent: string; bg1: string; bg2: string;
@@ -17,7 +17,7 @@ interface Product {
 
 const PRODUCTS: Product[] = [
   {
-    id: 'bundle', emoji: '✨', name: 'Paket Lengkap', sub: '3-in-1',
+    id: 'bundle', icon: Sparkles, name: 'Paket Lengkap', sub: '3-in-1',
     size: 'Facewash + Day Cream + Night Cream', price: 335000, originalPrice: 350000,
     desc: 'Dapatkan rangkaian perawatan lengkap Doface dengan harga lebih hemat. Solusi paripurna untuk kulit cerah dan glowing maksimal setiap hari!',
     img: 'bundle', heroImg: '/Isi/069A5237.jpg',
@@ -25,52 +25,74 @@ const PRODUCTS: Product[] = [
     hotspots: [],
   },
   {
-    id: 'facewash', emoji: '🫧', name: 'Refreshing', sub: 'Facewash',
+    id: 'facewash', icon: Droplets, name: 'Refreshing', sub: 'Facewash',
     size: '100ml / 3.4 FL.OZ', price: 100000,
     desc: 'Pembersih wajah lembut yang mengangkat kotoran & minyak berlebih tanpa membuat kulit kering.',
     img: '/Isi/facewash.png', heroImg: '/Isi/069A4957 (1).jpg',
     accent: '#fd86a5', bg1: '#fff0f7', bg2: '#ffd6ea',
     hotspots: [
-      { id: 'nia',  label: 'Niacinamide',  align: 'right', x: '15%',  y: '28%',
-        detail: 'Membantu mencerahkan & merawat skin barrier' },
-      { id: 'cer',  label: 'Ceramide NP',  align: 'right', x: '12%',  y: '58%',
-        detail: 'Membantu menjaga & memperbaiki skin barrier' },
-      { id: 'arb',  label: 'Alpha Arbutin', align: 'left', x: '72%', y: '45%',
-        detail: 'Membantu menyamarkan tampilan noda hitam & meratakan warna kulit' },
+      {
+        id: 'nia', label: 'Niacinamide', align: 'right', x: '15%', y: '28%',
+        detail: 'Membantu mencerahkan & merawat skin barrier'
+      },
+      {
+        id: 'cer', label: 'Ceramide NP', align: 'right', x: '25%', y: '55%',
+        detail: 'Membantu menjaga & memperbaiki skin barrier'
+      },
+      {
+        id: 'arb', label: 'Alpha Arbutin', align: 'left', x: '62%', y: '45%',
+        detail: 'Membantu menyamarkan tampilan noda hitam & meratakan warna kulit'
+      },
     ],
   },
   {
-    id: 'daycream', emoji: '☀️', name: 'Glow', sub: 'Day Cream',
+    id: 'daycream', icon: Sun, name: 'Glow', sub: 'Day Cream',
     size: '10g', price: 100000,
     desc: 'Pelembab siang hari dengan SPF untuk melindungi paparan kulit dari paparan sinar UV dan polusi.',
     img: '/Isi/daycream.png', heroImg: '/Isi/069A5122.jpg',
     accent: '#f8578c', bg1: '#fff0f5', bg2: '#ffc8dc',
     hotspots: [
-      { id: 'spf',  label: 'UVA & UVB Protection', align: 'left', x: '70%', y: '22%',
-        detail: 'Kandungan: Ethylhexyl Methoxycinnamate, Butyl Methoxycinnamate, Oksibenzon, Octocrylene, Titanium Dioxide.' },
-      { id: 'hya',  label: 'Hyaluronic Acid', align: 'right', x: '18%', y: '35%',
-        detail: 'Hydration & skin plumping' },
-      { id: 'nia2', label: 'Niacinamide',   align: 'left',  x: '74%', y: '48%',
-        detail: 'Brightening & barrier support' },
-      { id: 'cer2', label: 'Ceramide NP',   align: 'right', x: '15%', y: '62%',
-        detail: 'Skin barrier repair' },
-      { id: 'pan',  label: 'Panthenol & Urea',     align: 'left', x: '72%', y: '75%',
-        detail: 'Soothing & moisturizing' },
+      {
+        id: 'spf', label: 'UVA & UVB Protection', align: 'left', x: '55%', y: '18%',
+        detail: 'Kandungan: Ethylhexyl Methoxycinnamate, Butyl Methoxycinnamate, Oksibenzon, Octocrylene, Titanium Dioxide.'
+      },
+      {
+        id: 'hya', label: 'Hyaluronic Acid', align: 'right', x: '18%', y: '30%',
+        detail: 'Hydration & skin plumping'
+      },
+      {
+        id: 'nia2', label: 'Niacinamide', align: 'left', x: '65%', y: '42%',
+        detail: 'Brightening & barrier support'
+      },
+      {
+        id: 'cer2', label: 'Ceramide NP', align: 'right', x: '15%', y: '65%',
+        detail: 'Skin barrier repair'
+      },
+      {
+        id: 'pan', label: 'Panthenol & Urea', align: 'left', x: '60%', y: '78%',
+        detail: 'Soothing & moisturizing'
+      },
     ],
   },
   {
-    id: 'nightcream', emoji: '🌙', name: 'Collagen', sub: 'Night Cream',
+    id: 'nightcream', icon: Moon, name: 'Collagen', sub: 'Night Cream',
     size: '10g', price: 150000,
     desc: 'Krim malam yang bekerja optimal saat tidur untuk regenerasi sel kulit dan mencerahkan',
     img: '/Isi/nightcream.png', heroImg: '/Isi/069A5499.jpg',
     accent: '#c0527a', bg1: '#fef0f7', bg2: '#f9c0d8',
     hotspots: [
-      { id: 'ret',  label: 'Retinaldehyde', align: 'left',  x: '72%', y: '28%',
-        detail: 'Anti-aging aktif. Membantu mempercepat regenerasi kulit. Membantu menyamarkan garis halus & tanda penuaan.' },
-      { id: 'col',  label: 'Hydrolyzed Collagen',  align: 'right', x: '18%',  y: '45%',
-        detail: 'Membantu melembapkan & meningkatkan elastisitas tampilan kulit.' },
-      { id: 'nia3', label: 'Niacinamide',    align: 'right', x: '15%',  y: '68%',
-        detail: 'Membantu mencerahkan, memperkuat skin barrier & meratakan warna kulit.' },
+      {
+        id: 'ret', label: 'Retinaldehyde', align: 'left', x: '62%', y: '28%',
+        detail: 'Anti-aging aktif. Membantu mempercepat regenerasi kulit. Membantu menyamarkan garis halus & tanda penuaan.'
+      },
+      {
+        id: 'col', label: 'Hydrolyzed Collagen', align: 'right', x: '10%', y: '35%',
+        detail: 'Membantu melembapkan & meningkatkan elastisitas tampilan kulit.'
+      },
+      {
+        id: 'nia3', label: 'Niacinamide', align: 'right', x: '25%', y: '62%',
+        detail: 'Membantu mencerahkan, memperkuat skin barrier & meratakan warna kulit.'
+      },
     ],
   },
 ];
@@ -94,7 +116,7 @@ const InstagramIcon = ({ size = 24, color = "currentColor", strokeWidth = 2 }: {
 
 /* ─────────── COMPONENTS ─────────── */
 function HotspotPin({ spot, active, onToggle, accent }: { spot: Hotspot; active: boolean; onToggle: () => void; accent: string; }) {
-  const isLeft = spot.align === 'left'; 
+  const isLeft = spot.align === 'left';
   return (
     <div style={{ position: 'absolute', left: spot.x, top: spot.y, zIndex: 30 }}>
       <div className={`flex items-center gap-1.5 cursor-pointer select-none ${isLeft ? 'flex-row' : 'flex-row-reverse'}`} onClick={onToggle}>
@@ -124,7 +146,7 @@ function HotspotPin({ spot, active, onToggle, accent }: { spot: Hotspot; active:
 const slide = {
   enter: (d: number) => ({ x: d > 0 ? '80%' : '-80%', opacity: 0, scale: 0.92 }),
   center: { x: 0, opacity: 1, scale: 1 },
-  exit:  (d: number) => ({ x: d > 0 ? '-80%' : '80%', opacity: 0, scale: 0.92 }),
+  exit: (d: number) => ({ x: d > 0 ? '-80%' : '80%', opacity: 0, scale: 0.92 }),
 };
 
 /* ─────────── BEFORE AFTER GALLERY ─────────── */
@@ -135,17 +157,17 @@ function BeforeAfterSlider({ beforeImg, afterImg }: { beforeImg: string, afterIm
     <div className="relative w-full aspect-square sm:aspect-video rounded-3xl overflow-hidden glass border border-white/60 shadow-xl select-none group">
       {/* Before Image (Base) */}
       <img src={beforeImg} alt="Before" className="absolute inset-0 w-full h-full object-cover" draggable={false} />
-      
+
       {/* After Image (Clipped from left -> visible on right) */}
-      <div 
-        className="absolute inset-0 w-full h-full overflow-hidden" 
+      <div
+        className="absolute inset-0 w-full h-full overflow-hidden"
         style={{ clipPath: `inset(0 0 0 ${sliderPos}%)` }}
       >
         <img src={afterImg} alt="After" className="absolute inset-0 w-full h-full object-cover" draggable={false} />
       </div>
 
       {/* Slider Handle Line */}
-      <div 
+      <div
         className="absolute top-0 bottom-0 w-1 bg-white shadow-[0_0_15px_rgba(0,0,0,0.3)] pointer-events-none"
         style={{ left: `${sliderPos}%`, transform: 'translateX(-50%)' }}
       >
@@ -162,10 +184,10 @@ function BeforeAfterSlider({ beforeImg, afterImg }: { beforeImg: string, afterIm
       <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-gradient-to-r from-[#fd86a5] to-[#f8578c] text-white text-[9px] font-extrabold tracking-widest uppercase pointer-events-none shadow-md">After</div>
 
       {/* Invisible Interactive Range */}
-      <input 
-        type="range" 
-        min="0" max="100" 
-        value={sliderPos} 
+      <input
+        type="range"
+        min="0" max="100"
+        value={sliderPos}
         onChange={(e) => setSliderPos(Number(e.target.value))}
         className="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-20 m-0 p-0"
       />
@@ -180,7 +202,7 @@ function BeforeAfterGallery() {
   return (
     <div className="flex flex-col items-center w-full">
       <AnimatePresence mode="wait">
-        <motion.div 
+        <motion.div
           key={activeIdx}
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -194,8 +216,8 @@ function BeforeAfterGallery() {
 
       <div className="flex gap-2.5 mt-5 overflow-x-auto thin-scroll max-w-full pb-2 px-2 justify-center">
         {CASES.map((c, i) => (
-          <button 
-            key={i} 
+          <button
+            key={i}
             onClick={() => setActiveIdx(i)}
             className={`shrink-0 w-14 h-14 sm:w-16 sm:h-16 rounded-2xl overflow-hidden border-2 transition-all duration-300 ${activeIdx === i ? 'border-[#fd86a5] scale-110 shadow-lg' : 'border-transparent opacity-50 hover:opacity-100 bg-white/50'}`}
           >
@@ -223,7 +245,7 @@ function InstagramFeed() {
             <p className="text-xs lg:text-sm text-[#7a3f58] leading-relaxed max-w-xs font-medium">Simply Better Skin. Part of @donna_scarves @donnaprive.id</p>
           </div>
         </div>
-        <button 
+        <button
           onClick={() => window.open('https://instagram.com/doface.id', '_blank')}
           className="flex items-center justify-center gap-2 px-8 py-4 rounded-2xl bg-[#2d0f1e] text-white font-extrabold text-sm shadow-xl hover:bg-[#fd86a5] transition-all"
         >
@@ -233,9 +255,9 @@ function InstagramFeed() {
 
       <div className="grid grid-cols-3 md:grid-cols-6 gap-2 lg:gap-4">
         {INSTAGRAM_POSTS.map(post => (
-          <motion.a 
-            key={post.id} 
-            href={post.url} 
+          <motion.a
+            key={post.id}
+            href={post.url}
             target="_blank"
             whileHover={{ scale: 1.05, y: -5 }}
             className="aspect-[4/5] rounded-2xl overflow-hidden shadow-md relative group"
@@ -275,16 +297,16 @@ export default function App() {
             <Home size={22} color={view === 'landing' ? '#fd86a5' : '#c09bab'} strokeWidth={view === 'landing' ? 2.5 : 2} />
             <span className="text-[10px] font-bold" style={{ color: view === 'landing' ? '#fd86a5' : '#c09bab' }}>Home</span>
           </button>
-          
+
           <button onClick={() => setView('shop')} className="flex flex-col items-center gap-1.5 flex-1 relative">
             {view === 'shop' && <motion.div layoutId="nav-pill" className="absolute -inset-x-2 -inset-y-1 bg-[#fd86a5]/10 rounded-xl" />}
             <div className="relative">
-               <ShoppingBag size={22} color={view === 'shop' ? '#fd86a5' : '#c09bab'} strokeWidth={view === 'shop' ? 2.5 : 2} />
-               {view !== 'shop' && <span className="absolute -top-1 -right-1 w-2 h-2 bg-[#fd86a5] rounded-full border-2 border-white"></span>}
+              <ShoppingBag size={22} color={view === 'shop' ? '#fd86a5' : '#c09bab'} strokeWidth={view === 'shop' ? 2.5 : 2} />
+              {view !== 'shop' && <span className="absolute -top-1 -right-1 w-2 h-2 bg-[#fd86a5] rounded-full border-2 border-white"></span>}
             </div>
             <span className="text-[10px] font-bold" style={{ color: view === 'shop' ? '#fd86a5' : '#c09bab' }}>Product</span>
           </button>
-          
+
           <button onClick={() => window.open('https://wa.me/6281234567890', '_blank')} className="flex flex-col items-center gap-1.5 flex-1 transition-transform active:scale-95">
             <MessageCircle size={22} color="#c09bab" strokeWidth={2} />
             <span className="text-[10px] font-bold" style={{ color: '#c09bab' }}>WhatsApp</span>
@@ -303,22 +325,22 @@ function LandingPage({ onExplore }: { onExplore: () => void }) {
       <div className="absolute top-4 left-0 right-0 px-5 lg:px-10 lg:top-8 z-30 flex justify-center lg:justify-between items-center">
         <img src="/Isi/doface.svg" alt="Doface" className="h-7 lg:h-8" />
         <div className="hidden lg:flex items-center gap-3">
-           <button onClick={() => window.open('https://wa.me/6281234567890', '_blank')} className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#25D366] text-white text-[10px] lg:text-xs font-bold shadow-md hover:bg-[#20b858] transition-colors">
-             <MessageCircle size={14} /> WhatsApp
-           </button>
+          <button onClick={() => window.open('https://wa.me/6281234567890', '_blank')} className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#25D366] text-white text-[10px] lg:text-xs font-bold shadow-md hover:bg-[#20b858] transition-colors">
+            <MessageCircle size={14} /> WhatsApp
+          </button>
         </div>
       </div>
 
       {/* Hero Section */}
       <div className="relative w-full h-[60vh] lg:h-screen shrink-0 overflow-hidden">
-        <img 
-          src="/Isi/069A5237.jpg" 
-          alt="Doface Models" 
-          className="w-full h-full object-cover object-[50%_45%] lg:object-center scale-110 lg:scale-100" 
+        <img
+          src="/Isi/069A5237.jpg"
+          alt="Doface Models"
+          className="w-full h-full object-cover object-[50%_45%] lg:object-center scale-110 lg:scale-100"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#fff0f5] via-[#fff0f5]/10 to-transparent lg:hidden" />
         <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-[#fff0f5]/95 via-[#fff0f5]/70 to-transparent w-full" />
-        
+
         {/* Desktop Content Panel */}
         <div className="hidden lg:flex absolute inset-0 z-20 items-center justify-start ml-20">
           <div className="w-[500px] xl:w-[600px] glass bg-white/40 backdrop-blur-xl rounded-3xl p-10 shadow-2xl border border-white/60">
@@ -338,8 +360,8 @@ function LandingPage({ onExplore }: { onExplore: () => void }) {
       {/* Mobile Content Section */}
       <div className="lg:hidden relative z-20 flex-1 px-5 pb-4 flex flex-col justify-start mt-0">
         <div className="glass rounded-3xl p-6 shadow-xl border border-white/80 mb-6 relative">
-          <div className="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap bg-gradient-to-r from-[#fd86a5] to-[#f8578c] text-white px-4 py-1 rounded-full text-[9px] font-extrabold tracking-widest uppercase shadow-md">
-            ✨ Bundle 3-in-1 Lebih Hemat
+          <div className="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap bg-gradient-to-r from-[#fd86a5] to-[#f8578c] text-white px-4 py-1 rounded-full text-[9px] font-extrabold tracking-widest uppercase shadow-md flex items-center gap-1.5">
+            <Sparkles size={10} /> Bundle 3-in-1 Lebih Hemat
           </div>
           <h1 className="text-2xl sm:text-3xl font-extrabold leading-tight text-[#fd86a5] mb-6 mt-2 text-center whitespace-nowrap">
             Simply Better Skin
@@ -365,7 +387,7 @@ function LandingPage({ onExplore }: { onExplore: () => void }) {
       <div className="w-full max-w-6xl mx-auto px-5 lg:px-8 py-10 lg:py-16 z-20 shrink-0">
         <div className="text-center mb-8 lg:mb-12">
           <p className="text-xs lg:text-sm font-extrabold tracking-widest uppercase mb-2" style={{ color: '#fd86a5' }}>Real Results</p>
-          <h2 className="text-3xl lg:text-4xl font-extrabold text-[#2d0f1e]">Buktikan Sendiri <br className="lg:hidden"/> dalam <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fd86a5] to-[#f8578c]">14 Hari</span></h2>
+          <h2 className="text-3xl lg:text-4xl font-extrabold text-[#2d0f1e]">Buktikan Sendiri <br className="lg:hidden" /> dalam <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fd86a5] to-[#f8578c]">14 Hari</span></h2>
         </div>
         <BeforeAfterGallery />
       </div>
@@ -419,11 +441,11 @@ function LandingPage({ onExplore }: { onExplore: () => void }) {
 
 /* ─────────── SHOP PAGE ─────────── */
 function ShopPage({ onBack }: { onBack: () => void }) {
-  const [idx, setIdx]             = useState(0);
-  const [dir, setDir]             = useState(1);
-  const [qty, setQty]             = useState(1);
-  const [hotspot, setHotspot]     = useState<string | null>(null);
-  const [touchX, setTouchX]       = useState<number | null>(null);
+  const [idx, setIdx] = useState(0);
+  const [dir, setDir] = useState(1);
+  const [qty, setQty] = useState(1);
+  const [hotspot, setHotspot] = useState<string | null>(null);
+  const [touchX, setTouchX] = useState<number | null>(null);
 
   const p = PRODUCTS[idx];
 
@@ -451,13 +473,13 @@ function ShopPage({ onBack }: { onBack: () => void }) {
         <div>
           <div className="flex items-center justify-between mb-10">
             <div className="flex items-center gap-3">
-               <button onClick={onBack} className="w-8 h-8 flex items-center justify-center rounded-full glass hover:bg-white/80 transition-colors shrink-0">
-                 <ChevronLeft size={16} color="#8a4f66" />
-               </button>
-               <img src="/Isi/doface.svg" alt="Doface" className="h-7" />
+              <button onClick={onBack} className="w-8 h-8 flex items-center justify-center rounded-full glass hover:bg-white/80 transition-colors shrink-0">
+                <ChevronLeft size={16} color="#8a4f66" />
+              </button>
+              <img src="/Isi/doface.svg" alt="Doface" className="h-7" />
             </div>
             <button onClick={() => window.open('https://wa.me/6281234567890', '_blank')} className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#25D366] text-white text-[10px] font-bold shadow-md hover:bg-[#20b858] transition-colors shrink-0">
-               <MessageCircle size={14} /> WhatsApp
+              <MessageCircle size={14} /> WhatsApp
             </button>
           </div>
 
@@ -516,25 +538,25 @@ function ShopPage({ onBack }: { onBack: () => void }) {
       <div className="relative flex-1 flex items-center justify-center overflow-hidden z-10" onTouchStart={e => setTouchX(e.touches[0].clientX)} onTouchEnd={e => { if (touchX === null) return; const dx = e.changedTouches[0].clientX - touchX; if (dx < -60) next(); else if (dx > 60) prev(); setTouchX(null); }} onClick={e => e.stopPropagation()}>
         <AnimatePresence custom={dir} mode="wait">
           <motion.div key={p.id + '-hero'} custom={dir} variants={slide} initial="enter" animate="center" exit="exit" transition={{ duration: 0.45, ease: [0.4, 0, 0.2, 1] }} className="absolute inset-0 flex items-center justify-center">
-            
+
             {p.id === 'bundle' ? (
               <div className="relative flex items-center justify-center h-[55vh] lg:h-[72vh] w-full float pointer-events-none">
-                 <img src="/Isi/daycream.png" className="absolute left-[8%] sm:left-[22%] lg:left-[15%] bottom-[32%] w-[105px] sm:w-[145px] lg:w-[175px] object-contain rotate-[-15deg] z-10" style={{ filter: 'drop-shadow(-15px 45px 35px rgba(0,0,0,0.25))' }} />
-                 <img src="/Isi/facewash.png" className="absolute z-20 h-[280px] sm:h-[380px] lg:h-[480px] object-contain rotate-3 -translate-y-16" style={{ filter: 'drop-shadow(0 50px 45px rgba(0,0,0,0.3))' }} />
-                 <img src="/Isi/nightcream.png" className="absolute right-[8%] sm:right-[22%] lg:right-[15%] bottom-[24%] w-[95px] sm:w-[135px] lg:w-[155px] object-contain rotate-12 z-30" style={{ filter: 'drop-shadow(15px 45px 35px rgba(0,0,0,0.25))' }} />
+                <img src="/Isi/daycream.png" className="absolute left-[8%] sm:left-[22%] lg:left-[15%] bottom-[32%] w-[105px] sm:w-[145px] lg:w-[175px] object-contain rotate-[-15deg] z-10" style={{ filter: 'drop-shadow(-15px 45px 35px rgba(0,0,0,0.25))' }} />
+                <img src="/Isi/facewash.png" className="absolute z-20 h-[280px] sm:h-[380px] lg:h-[480px] object-contain rotate-3 -translate-y-16" style={{ filter: 'drop-shadow(0 50px 45px rgba(0,0,0,0.3))' }} />
+                <img src="/Isi/nightcream.png" className="absolute right-[8%] sm:right-[22%] lg:right-[15%] bottom-[24%] w-[95px] sm:w-[135px] lg:w-[155px] object-contain rotate-12 z-30" style={{ filter: 'drop-shadow(15px 45px 35px rgba(0,0,0,0.25))' }} />
               </div>
             ) : (
-              <img 
-                src={p.img} 
-                alt={p.sub} 
-                className="float select-none pointer-events-none rotate-2 lg:rotate-3" 
-                style={{ 
-                  height: (p.id === 'daycream' || p.id === 'nightcream') ? 'min(45vh, 320px)' : 'min(60vh, 480px)', 
-                  width: 'auto', 
-                  objectFit: 'contain', 
-                  filter: 'drop-shadow(0 50px 45px rgba(0,0,0,0.3))' 
-                }} 
-                draggable={false} 
+              <img
+                src={p.img}
+                alt={p.sub}
+                className="float select-none pointer-events-none rotate-2 lg:rotate-3"
+                style={{
+                  height: (p.id === 'daycream' || p.id === 'nightcream') ? 'min(45vh, 320px)' : 'min(60vh, 480px)',
+                  width: 'auto',
+                  objectFit: 'contain',
+                  filter: 'drop-shadow(0 50px 45px rgba(0,0,0,0.3))'
+                }}
+                draggable={false}
               />
             )}
 
@@ -552,8 +574,8 @@ function ShopPage({ onBack }: { onBack: () => void }) {
       <div className="lg:hidden absolute top-0 left-0 right-0 z-30 flex flex-col px-4 pt-4 pb-2" style={{ background: 'transparent' }}>
         <div className="flex gap-1.5 overflow-x-auto thin-scroll no-scrollbar pb-2">
           {PRODUCTS.map((pr, i) => (
-            <button key={pr.id} onClick={() => goTo(i)} className="px-3 py-2 rounded-full text-[10px] font-bold transition-all duration-300 whitespace-nowrap shrink-0 flex items-center gap-1" style={{ background: i === idx ? p.accent : 'rgba(255,255,255,0.7)', color: i === idx ? 'white' : '#8a4f66', border: `1px solid ${i === idx ? p.accent : 'rgba(255,255,255,0.9)'}`, boxShadow: i === idx ? `0 4px 14px ${p.accent}55` : 'none' }}>
-              {pr.emoji} {pr.sub}
+            <button key={pr.id} onClick={() => goTo(i)} className="px-3 py-2 rounded-full text-[10px] font-bold transition-all duration-300 whitespace-nowrap shrink-0 flex items-center gap-1.5" style={{ background: i === idx ? p.accent : 'rgba(255,255,255,0.7)', color: i === idx ? 'white' : '#8a4f66', border: `1px solid ${i === idx ? p.accent : 'rgba(255,255,255,0.9)'}`, boxShadow: i === idx ? `0 4px 14px ${p.accent}55` : 'none' }}>
+              <pr.icon size={12} /> {pr.sub}
             </button>
           ))}
         </div>
@@ -563,11 +585,11 @@ function ShopPage({ onBack }: { onBack: () => void }) {
       <div className="lg:hidden absolute bottom-0 left-0 right-0 z-30" style={{ background: 'rgba(255,240,247,0.95)', backdropFilter: 'blur(30px)', borderTop: '1px solid rgba(255,255,255,0.9)' }}>
         <AnimatePresence mode="wait">
           <motion.div key={p.id + '-mob'} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} transition={{ duration: 0.3 }} className="px-5 py-4">
-            
+
             {p.id === 'bundle' && (
               <div className="flex items-center gap-1.5 mb-2">
-                 <span className="bg-gradient-to-r from-[#fd86a5] to-[#f8578c] text-white px-2 py-0.5 rounded text-[8px] font-extrabold uppercase tracking-widest shadow-sm">Super Deal</span>
-                 <span className="text-[10px] font-bold" style={{ color: '#b87990' }}>Lebih Hemat Rp 15.000</span>
+                <span className="bg-gradient-to-r from-[#fd86a5] to-[#f8578c] text-white px-2 py-0.5 rounded text-[8px] font-extrabold uppercase tracking-widest shadow-sm">Super Deal</span>
+                <span className="text-[10px] font-bold" style={{ color: '#b87990' }}>Lebih Hemat Rp 15.000</span>
               </div>
             )}
 
@@ -578,7 +600,7 @@ function ShopPage({ onBack }: { onBack: () => void }) {
                 <span className="text-[10px] font-bold" style={{ color: '#8a4f66' }}>4.9</span>
               </div>
             </div>
-            
+
             <p className="text-[10px] font-semibold mb-3 line-clamp-1" style={{ color: '#7a3f58' }}>{p.size}</p>
 
             <div className="flex items-center gap-3">
@@ -589,7 +611,7 @@ function ShopPage({ onBack }: { onBack: () => void }) {
                   {p.originalPrice && qty === 1 && <s className="text-[10px] font-semibold" style={{ color: '#c09bab' }}>{fmt(p.originalPrice)}</s>}
                 </div>
               </div>
-              
+
               <div className="flex items-center gap-2 bg-white/50 rounded-full p-1 border border-white/60">
                 <button onClick={() => setQty(q => Math.max(1, q - 1))} className="w-6 h-6 rounded-full bg-white flex items-center justify-center shadow-sm"><Minus size={10} color="#8a4f66" /></button>
                 <span className="text-sm font-bold w-4 text-center" style={{ color: '#2d0f1e' }}>{qty}</span>
