@@ -524,7 +524,18 @@ function ShopPage({ onBack }: { onBack: () => void }) {
                  <img src="/Isi/nightcream.png" className="absolute right-[8%] sm:right-[22%] lg:right-[15%] bottom-[24%] w-[95px] sm:w-[135px] lg:w-[155px] object-contain rotate-12 z-30" style={{ filter: 'drop-shadow(15px 45px 35px rgba(0,0,0,0.25))' }} />
               </div>
             ) : (
-              <img src={p.img} alt={p.sub} className="float select-none pointer-events-none rotate-2 lg:rotate-3" style={{ height: 'min(60vh, 480px)', width: 'auto', objectFit: 'contain', filter: 'drop-shadow(0 50px 45px rgba(0,0,0,0.3))' }} draggable={false} />
+              <img 
+                src={p.img} 
+                alt={p.sub} 
+                className="float select-none pointer-events-none rotate-2 lg:rotate-3" 
+                style={{ 
+                  height: (p.id === 'daycream' || p.id === 'nightcream') ? 'min(45vh, 320px)' : 'min(60vh, 480px)', 
+                  width: 'auto', 
+                  objectFit: 'contain', 
+                  filter: 'drop-shadow(0 50px 45px rgba(0,0,0,0.3))' 
+                }} 
+                draggable={false} 
+              />
             )}
 
             {p.hotspots.map(spot => (
