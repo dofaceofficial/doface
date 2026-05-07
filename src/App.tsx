@@ -256,7 +256,7 @@ export default function App() {
   const [view, setView] = useState<'landing' | 'shop'>('landing');
 
   return (
-    <div className="w-screen h-screen overflow-hidden bg-white flex flex-col">
+    <div className="w-screen h-[100dvh] overflow-hidden bg-white flex flex-col">
       <div className="flex-1 overflow-hidden relative">
         <AnimatePresence mode="wait">
           {view === 'landing' ? (
@@ -268,8 +268,8 @@ export default function App() {
       </div>
 
       {/* Persistent Bottom Nav (Mobile Only) */}
-      <div className="lg:hidden shrink-0 bg-white/90 backdrop-blur-2xl border-t border-[#fd86a5]/20 shadow-[0_-10px_30px_rgba(253,134,165,0.08)] relative z-50">
-        <div className="flex items-center justify-around px-2 pb-5 pt-3">
+      <div className="lg:hidden shrink-0 bg-white/95 backdrop-blur-2xl border-t border-[#fd86a5]/20 shadow-[0_-10px_30px_rgba(253,134,165,0.1)] relative z-50">
+        <div className="flex items-center justify-around px-2 pb-8 pt-3">
           <button onClick={() => setView('landing')} className="flex flex-col items-center gap-1.5 flex-1 transition-transform active:scale-95">
             <Home size={22} color={view === 'landing' ? '#fd86a5' : '#c09bab'} strokeWidth={view === 'landing' ? 2.5 : 2} />
             <span className="text-[9px] font-bold" style={{ color: view === 'landing' ? '#fd86a5' : '#c09bab' }}>Home</span>
