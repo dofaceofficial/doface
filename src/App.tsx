@@ -267,27 +267,29 @@ export default function App() {
         </AnimatePresence>
       </div>
 
-      {/* Persistent Bottom Nav (Mobile Only) */}
-      <div className="lg:hidden shrink-0 bg-white/95 backdrop-blur-2xl border-t border-[#fd86a5]/20 shadow-[0_-10px_30px_rgba(253,134,165,0.1)] relative z-50">
-        <div className="flex items-center justify-around px-2 pb-8 pt-3">
-          <button onClick={() => setView('landing')} className="flex flex-col items-center gap-1.5 flex-1 transition-transform active:scale-95">
+      {/* Persistent Bottom Nav (Floating Aesthetic) */}
+      <div className="lg:hidden shrink-0 bg-white/80 backdrop-blur-3xl border-t border-[#fd86a5]/10 relative z-50">
+        <div className="flex items-center justify-around px-4 pb-8 pt-4">
+          <button onClick={() => setView('landing')} className="flex flex-col items-center gap-1.5 flex-1 relative">
+            {view === 'landing' && <motion.div layoutId="nav-pill" className="absolute -inset-x-2 -inset-y-1 bg-[#fd86a5]/10 rounded-xl" />}
             <Home size={22} color={view === 'landing' ? '#fd86a5' : '#c09bab'} strokeWidth={view === 'landing' ? 2.5 : 2} />
-            <span className="text-[9px] font-bold" style={{ color: view === 'landing' ? '#fd86a5' : '#c09bab' }}>Home</span>
+            <span className="text-[10px] font-bold" style={{ color: view === 'landing' ? '#fd86a5' : '#c09bab' }}>Home</span>
           </button>
           
-          <button onClick={() => setView('shop')} className="flex flex-col items-center gap-1.5 flex-1 transition-transform active:scale-95">
+          <button onClick={() => setView('shop')} className="flex flex-col items-center gap-1.5 flex-1 relative">
+            {view === 'shop' && <motion.div layoutId="nav-pill" className="absolute -inset-x-2 -inset-y-1 bg-[#fd86a5]/10 rounded-xl" />}
             <div className="relative">
                <ShoppingBag size={22} color={view === 'shop' ? '#fd86a5' : '#c09bab'} strokeWidth={view === 'shop' ? 2.5 : 2} />
-               {view !== 'shop' && <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-[#fd86a5] rounded-full animate-pulse border-2 border-white"></span>}
+               {view !== 'shop' && <span className="absolute -top-1 -right-1 w-2 h-2 bg-[#fd86a5] rounded-full border-2 border-white"></span>}
             </div>
-            <span className="text-[9px] font-bold" style={{ color: view === 'shop' ? '#fd86a5' : '#c09bab' }}>Product</span>
+            <span className="text-[10px] font-bold" style={{ color: view === 'shop' ? '#fd86a5' : '#c09bab' }}>Product</span>
           </button>
           
           <button onClick={() => window.open('https://wa.me/6281234567890', '_blank')} className="flex flex-col items-center gap-1.5 flex-1 transition-transform active:scale-95">
-            <div className="w-10 h-10 rounded-full bg-[#25D366]/10 flex items-center justify-center -mt-2 shadow-sm border border-[#25D366]/20">
-              <MessageCircle size={20} color="#25D366" strokeWidth={2.5} />
+            <div className="w-11 h-11 rounded-full bg-[#25D366] flex items-center justify-center -mt-3 shadow-lg shadow-[#25D366]/30 border-4 border-white">
+              <MessageCircle size={22} color="white" strokeWidth={2.5} />
             </div>
-            <span className="text-[9px] font-bold" style={{ color: '#25D366' }}>WhatsApp</span>
+            <span className="text-[10px] font-bold" style={{ color: '#25D366' }}>WhatsApp</span>
           </button>
         </div>
       </div>
@@ -325,7 +327,7 @@ function LandingPage({ onExplore }: { onExplore: () => void }) {
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/70 border border-[#fd86a5]/30 mb-6 shadow-sm">
               <span className="text-xs font-bold text-[#fd86a5] uppercase tracking-widest">✨ Bundle 3-in-1 Lebih Hemat!</span>
             </div>
-            <h1 className="text-4xl xl:text-5xl font-extrabold leading-tight text-[#2d0f1e] mb-8">
+            <h1 className="text-4xl xl:text-5xl font-extrabold leading-tight text-[#fd86a5] mb-8">
               Simply Better Skin
             </h1>
             <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} onClick={onExplore} className="w-full flex items-center justify-center gap-2 py-5 rounded-2xl text-white font-extrabold text-base transition-shadow" style={{ background: `linear-gradient(135deg, #fd86a5, #f8578c)`, boxShadow: `0 8px 30px rgba(253,134,165,0.4)` }}>
@@ -336,12 +338,12 @@ function LandingPage({ onExplore }: { onExplore: () => void }) {
       </div>
 
       {/* Mobile Content Section */}
-      <div className="lg:hidden relative z-20 flex-1 px-5 pb-4 flex flex-col justify-start -mt-10">
+      <div className="lg:hidden relative z-20 flex-1 px-5 pb-4 flex flex-col justify-start mt-0">
         <div className="glass rounded-3xl p-6 shadow-xl border border-white/80 mb-6 relative">
           <div className="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap bg-gradient-to-r from-[#fd86a5] to-[#f8578c] text-white px-4 py-1 rounded-full text-[9px] font-extrabold tracking-widest uppercase shadow-md">
             ✨ Bundle 3-in-1 Lebih Hemat
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold leading-tight text-[#2d0f1e] mb-6 mt-2 text-center whitespace-nowrap">
+          <h1 className="text-2xl sm:text-3xl font-extrabold leading-tight text-[#fd86a5] mb-6 mt-2 text-center whitespace-nowrap">
             Simply Better Skin
           </h1>
           <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} onClick={onExplore} className="w-full flex items-center justify-center gap-2 py-4 rounded-2xl text-white font-extrabold text-sm shadow-lg" style={{ background: `linear-gradient(135deg, #fd86a5, #f8578c)` }}>
