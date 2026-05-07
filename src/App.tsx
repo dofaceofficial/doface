@@ -97,7 +97,7 @@ function HotspotPin({ spot, active, onToggle, accent }: { spot: Hotspot; active:
   const isLeft = spot.align === 'left'; 
   return (
     <div style={{ position: 'absolute', left: spot.x, top: spot.y, zIndex: 30 }}>
-      <div className={`flex items-center gap-1.5 cursor-pointer select-none ${isLeft ? 'flex-row-reverse' : 'flex-row'}`} onClick={onToggle}>
+      <div className={`flex items-center gap-1.5 cursor-pointer select-none ${isLeft ? 'flex-row' : 'flex-row-reverse'}`} onClick={onToggle}>
         <div className="relative w-5 h-5 shrink-0 flex items-center justify-center">
           {!active && <span className="ping absolute inset-0 rounded-full" style={{ background: accent + '66' }} />}
           <span className="w-4 h-4 rounded-full border-2 border-white flex items-center justify-center shadow-md" style={{ background: active ? '#fff' : accent }}>
@@ -520,11 +520,11 @@ function ShopPage({ onBack }: { onBack: () => void }) {
             {p.id === 'bundle' ? (
               <div className="relative flex items-center justify-center h-[55vh] lg:h-[72vh] w-full float pointer-events-none">
                  <img src="/Isi/daycream.png" className="absolute left-[8%] sm:left-[22%] lg:left-[15%] bottom-[32%] w-[110px] sm:w-[150px] lg:w-[180px] object-contain -rotate-12 z-10" style={{ filter: 'drop-shadow(-15px 45px 35px rgba(0,0,0,0.25))' }} />
-                 <img src="/Isi/facewash.png" className="absolute z-20 h-[300px] sm:h-[420px] lg:h-[520px] object-contain rotate-3 -translate-y-16" style={{ filter: 'drop-shadow(0 50px 45px rgba(0,0,0,0.3))' }} />
+                 <img src="/Isi/facewash.png" className="absolute z-20 h-[280px] sm:h-[380px] lg:h-[480px] object-contain rotate-3 -translate-y-16" style={{ filter: 'drop-shadow(0 50px 45px rgba(0,0,0,0.3))' }} />
                  <img src="/Isi/nightcream.png" className="absolute right-[8%] sm:right-[22%] lg:right-[15%] bottom-[24%] w-[100px] sm:w-[140px] lg:w-[160px] object-contain rotate-12 z-30" style={{ filter: 'drop-shadow(15px 45px 35px rgba(0,0,0,0.25))' }} />
               </div>
             ) : (
-              <img src={p.img} alt={p.sub} className="float select-none pointer-events-none rotate-2 lg:rotate-3" style={{ height: 'min(65vh, 520px)', width: 'auto', objectFit: 'contain', filter: 'drop-shadow(0 50px 45px rgba(0,0,0,0.3))' }} draggable={false} />
+              <img src={p.img} alt={p.sub} className="float select-none pointer-events-none rotate-2 lg:rotate-3" style={{ height: 'min(60vh, 480px)', width: 'auto', objectFit: 'contain', filter: 'drop-shadow(0 50px 45px rgba(0,0,0,0.3))' }} draggable={false} />
             )}
 
             {p.hotspots.map(spot => (
