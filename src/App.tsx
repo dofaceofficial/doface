@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingBag, Plus, Minus, Star, X, ChevronLeft, ChevronRight, ArrowRight, ShieldCheck, Droplets, Leaf, Clock, Home, MessageCircle, Sparkles, Sun, Moon, Wind } from 'lucide-react';
+import { ShoppingBag, Plus, Minus, Star, X, ChevronLeft, ChevronRight, ArrowRight, ShieldCheck, Droplets, Leaf, Clock, Home, MessageCircle, Sparkles, Sun, Moon } from 'lucide-react';
 
 /* ─────────── DATA ─────────── */
 interface Hotspot {
@@ -485,7 +485,9 @@ function ShopPage({ onBack }: { onBack: () => void }) {
 
           <AnimatePresence mode="wait">
             <motion.div key={p.id + '-info'} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -16 }} transition={{ duration: 0.35 }}>
-              <p className="text-[10px] font-bold tracking-widest uppercase mb-1" style={{ color: p.accent }}>{p.emoji} {p.size}</p>
+              <p className="text-[10px] font-bold tracking-widest uppercase mb-1 flex items-center gap-1.5" style={{ color: p.accent }}>
+                <p.icon size={12} /> {p.size}
+              </p>
               <h1 className="text-5xl font-extrabold leading-none" style={{ color: '#2d0f1e' }}>{p.name}</h1>
               <h1 className="text-5xl font-extrabold leading-none mb-4" style={{ color: p.accent }}>{p.sub}</h1>
               {p.id === 'bundle' && (
