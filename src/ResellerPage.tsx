@@ -75,13 +75,13 @@ export default function ResellerPage() {
       </section>
 
       {/* ─────────── SECTION 3: PRICING / SKEMA ─────────── */}
-      <section id="pricing" className="py-16 px-5 lg:px-8 relative">
+      <section id="pricing" className="py-16 px-0 lg:px-8 relative">
         <div className="max-w-6xl mx-auto">
-          <motion.div {...fadeInUp} className="text-center mb-12">
+          <motion.div {...fadeInUp} className="text-center mb-12 px-5 lg:px-0">
             <h2 className="text-3xl lg:text-4xl font-extrabold text-[#2d0f1e] mb-4">Pilih Level Kemitraanmu &<br />Nikmati Diskon Hingga 35%!</h2>
           </motion.div>
           
-          <div className="relative -mx-5 px-5 lg:mx-0 lg:px-0">
+          <div className="relative px-5 lg:px-0">
             <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-6 lg:gap-8 no-scrollbar pb-6 lg:pb-0">
               {/* AGEN */}
               <motion.div {...fadeInUp} className="relative glass bg-gradient-to-br from-white/80 to-[#fff0f5]/80 rounded-3xl p-8 border-2 border-[#fd86a5] shadow-2xl overflow-hidden min-w-[85%] sm:min-w-[70%] lg:min-w-0 snap-center">
