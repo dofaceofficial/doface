@@ -81,9 +81,9 @@ export default function ResellerPage() {
             <h2 className="text-3xl lg:text-4xl font-extrabold text-[#2d0f1e] mb-4">Pilih Level Kemitraanmu &<br />Nikmati Diskon Hingga 35%!</h2>
           </motion.div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+          <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-6 lg:gap-8 no-scrollbar pb-6 lg:pb-0">
             {/* AGEN */}
-            <motion.div {...fadeInUp} className="relative glass bg-gradient-to-br from-white/80 to-[#fff0f5]/80 rounded-3xl p-8 border-2 border-[#fd86a5] shadow-2xl overflow-hidden">
+            <motion.div {...fadeInUp} className="relative glass bg-gradient-to-br from-white/80 to-[#fff0f5]/80 rounded-3xl p-8 border-2 border-[#fd86a5] shadow-2xl overflow-hidden min-w-[85%] sm:min-w-[70%] lg:min-w-0 snap-center">
               <div className="absolute top-0 right-0 bg-gradient-to-l from-[#fd86a5] to-[#f8578c] text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl shadow-md">BEST VALUE</div>
               <h3 className="text-2xl font-extrabold text-[#2d0f1e] mb-1">AGEN</h3>
               <p className="text-[#fd86a5] font-extrabold text-xl mb-6">Diskon 35%</p>
@@ -108,7 +108,7 @@ export default function ResellerPage() {
             </motion.div>
 
             {/* SUB AGEN */}
-            <motion.div {...fadeInUp} transition={{ delay: 0.1 }} className="glass bg-white/60 rounded-3xl p-8 border border-white shadow-xl">
+            <motion.div {...fadeInUp} transition={{ delay: 0.1 }} className="glass bg-white/60 rounded-3xl p-8 border border-white shadow-xl min-w-[85%] sm:min-w-[70%] lg:min-w-0 snap-center">
               <h3 className="text-2xl font-extrabold text-[#2d0f1e] mb-1">SUB AGEN</h3>
               <p className="text-[#fd86a5] font-extrabold text-xl mb-6">Diskon 25%</p>
               
@@ -132,7 +132,7 @@ export default function ResellerPage() {
             </motion.div>
 
             {/* RESELLER */}
-            <motion.div {...fadeInUp} transition={{ delay: 0.2 }} className="glass bg-white/60 rounded-3xl p-8 border border-white shadow-xl">
+            <motion.div {...fadeInUp} transition={{ delay: 0.2 }} className="glass bg-white/60 rounded-3xl p-8 border border-white shadow-xl min-w-[85%] sm:min-w-[70%] lg:min-w-0 snap-center">
               <h3 className="text-2xl font-extrabold text-[#2d0f1e] mb-1">RESELLER</h3>
               <p className="text-[#fd86a5] font-extrabold text-xl mb-6">Diskon 15%</p>
               
@@ -156,7 +156,7 @@ export default function ResellerPage() {
             </motion.div>
 
             {/* DROPSHIPPER / AFFILIATE */}
-            <motion.div {...fadeInUp} transition={{ delay: 0.3 }} className="glass bg-white/60 rounded-3xl p-8 border border-white shadow-xl">
+            <motion.div {...fadeInUp} transition={{ delay: 0.3 }} className="glass bg-white/60 rounded-3xl p-8 border border-white shadow-xl min-w-[85%] sm:min-w-[70%] lg:min-w-0 snap-center">
               <h3 className="text-2xl font-extrabold text-[#2d0f1e] mb-1">DROPSHIPPER / AFFILIATE</h3>
               <p className="text-[#fd86a5] font-extrabold text-xl mb-6">Fee Rp 35.000/Paket</p>
               
