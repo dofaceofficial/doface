@@ -81,97 +81,103 @@ export default function ResellerPage() {
             <h2 className="text-3xl lg:text-4xl font-extrabold text-[#2d0f1e] mb-4">Pilih Level Kemitraanmu &<br />Nikmati Diskon Hingga 35%!</h2>
           </motion.div>
           
-          <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-6 lg:gap-8 no-scrollbar pb-6 lg:pb-0">
-            {/* AGEN */}
-            <motion.div {...fadeInUp} className="relative glass bg-gradient-to-br from-white/80 to-[#fff0f5]/80 rounded-3xl p-8 border-2 border-[#fd86a5] shadow-2xl overflow-hidden min-w-[85%] sm:min-w-[70%] lg:min-w-0 snap-center">
-              <div className="absolute top-0 right-0 bg-gradient-to-l from-[#fd86a5] to-[#f8578c] text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl shadow-md">BEST VALUE</div>
-              <h3 className="text-2xl font-extrabold text-[#2d0f1e] mb-1">AGEN</h3>
-              <p className="text-[#fd86a5] font-extrabold text-xl mb-6">Diskon 35%</p>
-              
-              <ul className="space-y-4 mb-8">
-                <li className="flex items-start gap-3 text-sm text-[#7a3f58]">
-                  <CheckCircle2 size={18} className="text-[#25D366] shrink-0 mt-0.5" /> <span><b>Minimal Order:</b> Ambil 100 Paket.</span>
-                </li>
-                <li className="flex items-start gap-3 text-sm text-[#7a3f58]">
-                  <CheckCircle2 size={18} className="text-[#25D366] shrink-0 mt-0.5" /> <span><b>Biaya Registrasi:</b> FREE.</span>
-                </li>
-                <li className="flex items-start gap-3 text-sm text-[#7a3f58]">
-                  <CheckCircle2 size={18} className="text-[#25D366] shrink-0 mt-0.5" /> <span><b>Total Modal:</b> Rp 21.775.000 <s className="text-xs text-black/40">(Normal Rp 33.500.000)</s>.</span>
-                </li>
-                <li className="flex items-start gap-3 text-sm text-[#7a3f58]">
-                  <CheckCircle2 size={18} className="text-[#25D366] shrink-0 mt-0.5" /> <span><b>Keuntungan Penjualan:</b> Rp 11.725.000.</span>
-                </li>
-              </ul>
-              <button onClick={() => window.open(WA_LINK, '_blank')} className="w-full py-4 rounded-xl text-white font-extrabold transition-transform hover:scale-105 shadow-lg flex justify-center items-center gap-2" style={{ background: 'linear-gradient(135deg, #fd86a5, #f8578c)' }}>
-                Daftar Sebagai Agen <ArrowRight size={16} />
-              </button>
-            </motion.div>
+          <div className="relative -mx-5 px-5 lg:mx-0 lg:px-0">
+            <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-6 lg:gap-8 no-scrollbar pb-6 lg:pb-0">
+              {/* AGEN */}
+              <motion.div {...fadeInUp} className="relative glass bg-gradient-to-br from-white/80 to-[#fff0f5]/80 rounded-3xl p-8 border-2 border-[#fd86a5] shadow-2xl overflow-hidden min-w-[85%] sm:min-w-[70%] lg:min-w-0 snap-center">
+                <div className="absolute top-0 right-0 bg-gradient-to-l from-[#fd86a5] to-[#f8578c] text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl shadow-md">BEST VALUE</div>
+                <h3 className="text-2xl font-extrabold text-[#2d0f1e] mb-1">AGEN</h3>
+                <p className="text-[#fd86a5] font-extrabold text-xl mb-6">Diskon 35%</p>
+                
+                <ul className="space-y-4 mb-8">
+                  <li className="flex items-start gap-3 text-sm text-[#7a3f58]">
+                    <CheckCircle2 size={18} className="text-[#25D366] shrink-0 mt-0.5" /> <span><b>Minimal Order:</b> Ambil 100 Paket.</span>
+                  </li>
+                  <li className="flex items-start gap-3 text-sm text-[#7a3f58]">
+                    <CheckCircle2 size={18} className="text-[#25D366] shrink-0 mt-0.5" /> <span><b>Biaya Registrasi:</b> FREE.</span>
+                  </li>
+                  <li className="flex items-start gap-3 text-sm text-[#7a3f58]">
+                    <CheckCircle2 size={18} className="text-[#25D366] shrink-0 mt-0.5" /> <span><b>Total Modal:</b> Rp 21.775.000 <s className="text-xs text-black/40">(Normal Rp 33.500.000)</s>.</span>
+                  </li>
+                  <li className="flex items-start gap-3 text-sm text-[#7a3f58]">
+                    <CheckCircle2 size={18} className="text-[#25D366] shrink-0 mt-0.5" /> <span><b>Keuntungan Penjualan:</b> Rp 11.725.000.</span>
+                  </li>
+                </ul>
+                <button onClick={() => window.open(WA_LINK, '_blank')} className="w-full py-4 rounded-xl text-white font-extrabold transition-transform hover:scale-105 shadow-lg flex justify-center items-center gap-2" style={{ background: 'linear-gradient(135deg, #fd86a5, #f8578c)' }}>
+                  Daftar Sebagai Agen <ArrowRight size={16} />
+                </button>
+              </motion.div>
 
-            {/* SUB AGEN */}
-            <motion.div {...fadeInUp} transition={{ delay: 0.1 }} className="glass bg-white/60 rounded-3xl p-8 border border-white shadow-xl min-w-[85%] sm:min-w-[70%] lg:min-w-0 snap-center">
-              <h3 className="text-2xl font-extrabold text-[#2d0f1e] mb-1">SUB AGEN</h3>
-              <p className="text-[#fd86a5] font-extrabold text-xl mb-6">Diskon 25%</p>
-              
-              <ul className="space-y-4 mb-8">
-                <li className="flex items-start gap-3 text-sm text-[#7a3f58]">
-                  <CheckCircle2 size={18} className="text-[#fd86a5] shrink-0 mt-0.5" /> <span><b>Minimal Order:</b> Ambil 50 Paket.</span>
-                </li>
-                <li className="flex items-start gap-3 text-sm text-[#7a3f58]">
-                  <CheckCircle2 size={18} className="text-[#fd86a5] shrink-0 mt-0.5" /> <span><b>Biaya Registrasi:</b> FREE.</span>
-                </li>
-                <li className="flex items-start gap-3 text-sm text-[#7a3f58]">
-                  <CheckCircle2 size={18} className="text-[#fd86a5] shrink-0 mt-0.5" /> <span><b>Total Modal:</b> Rp 12.562.500 <s className="text-xs text-black/40">(Normal Rp 16.750.000)</s>.</span>
-                </li>
-                <li className="flex items-start gap-3 text-sm text-[#7a3f58]">
-                  <CheckCircle2 size={18} className="text-[#fd86a5] shrink-0 mt-0.5" /> <span><b>Keuntungan Penjualan:</b> Rp 4.187.500.</span>
-                </li>
-              </ul>
-              <button onClick={() => window.open(WA_LINK, '_blank')} className="w-full py-4 rounded-xl text-[#2d0f1e] font-extrabold border-2 border-[#2d0f1e] hover:bg-[#2d0f1e] hover:text-white transition-colors flex justify-center items-center gap-2">
-                Daftar Sebagai Sub Agen <ArrowRight size={16} />
-              </button>
-            </motion.div>
+              {/* SUB AGEN */}
+              <motion.div {...fadeInUp} transition={{ delay: 0.1 }} className="glass bg-white/60 rounded-3xl p-8 border border-white shadow-xl min-w-[85%] sm:min-w-[70%] lg:min-w-0 snap-center">
+                <h3 className="text-2xl font-extrabold text-[#2d0f1e] mb-1">SUB AGEN</h3>
+                <p className="text-[#fd86a5] font-extrabold text-xl mb-6">Diskon 25%</p>
+                
+                <ul className="space-y-4 mb-8">
+                  <li className="flex items-start gap-3 text-sm text-[#7a3f58]">
+                    <CheckCircle2 size={18} className="text-[#fd86a5] shrink-0 mt-0.5" /> <span><b>Minimal Order:</b> Ambil 50 Paket.</span>
+                  </li>
+                  <li className="flex items-start gap-3 text-sm text-[#7a3f58]">
+                    <CheckCircle2 size={18} className="text-[#fd86a5] shrink-0 mt-0.5" /> <span><b>Biaya Registrasi:</b> FREE.</span>
+                  </li>
+                  <li className="flex items-start gap-3 text-sm text-[#7a3f58]">
+                    <CheckCircle2 size={18} className="text-[#fd86a5] shrink-0 mt-0.5" /> <span><b>Total Modal:</b> Rp 12.562.500 <s className="text-xs text-black/40">(Normal Rp 16.750.000)</s>.</span>
+                  </li>
+                  <li className="flex items-start gap-3 text-sm text-[#7a3f58]">
+                    <CheckCircle2 size={18} className="text-[#fd86a5] shrink-0 mt-0.5" /> <span><b>Keuntungan Penjualan:</b> Rp 4.187.500.</span>
+                  </li>
+                </ul>
+                <button onClick={() => window.open(WA_LINK, '_blank')} className="w-full py-4 rounded-xl text-[#2d0f1e] font-extrabold border-2 border-[#2d0f1e] hover:bg-[#2d0f1e] hover:text-white transition-colors flex justify-center items-center gap-2">
+                  Daftar Sebagai Sub Agen <ArrowRight size={16} />
+                </button>
+              </motion.div>
 
-            {/* RESELLER */}
-            <motion.div {...fadeInUp} transition={{ delay: 0.2 }} className="glass bg-white/60 rounded-3xl p-8 border border-white shadow-xl min-w-[85%] sm:min-w-[70%] lg:min-w-0 snap-center">
-              <h3 className="text-2xl font-extrabold text-[#2d0f1e] mb-1">RESELLER</h3>
-              <p className="text-[#fd86a5] font-extrabold text-xl mb-6">Diskon 15%</p>
-              
-              <ul className="space-y-4 mb-8">
-                <li className="flex items-start gap-3 text-sm text-[#7a3f58]">
-                  <CheckCircle2 size={18} className="text-[#fd86a5] shrink-0 mt-0.5" /> <span><b>Minimal Order:</b> Ambil 10 Paket.</span>
-                </li>
-                <li className="flex items-start gap-3 text-sm text-[#7a3f58]">
-                  <CheckCircle2 size={18} className="text-[#fd86a5] shrink-0 mt-0.5" /> <span><b>Biaya Registrasi:</b> Rp 350.000.</span>
-                </li>
-                <li className="flex items-start gap-3 text-sm text-[#7a3f58]">
-                  <CheckCircle2 size={18} className="text-[#fd86a5] shrink-0 mt-0.5" /> <span><b>Total Modal:</b> Rp 2.847.500 <s className="text-xs text-black/40">(Normal Rp 3.350.000)</s>.</span>
-                </li>
-                <li className="flex items-start gap-3 text-sm text-[#7a3f58]">
-                  <CheckCircle2 size={18} className="text-[#fd86a5] shrink-0 mt-0.5" /> <span><b>Keuntungan Penjualan:</b> Rp 284.750.</span>
-                </li>
-              </ul>
-              <button onClick={() => window.open(WA_LINK, '_blank')} className="w-full py-4 rounded-xl text-[#2d0f1e] font-extrabold border-2 border-[#2d0f1e] hover:bg-[#2d0f1e] hover:text-white transition-colors flex justify-center items-center gap-2">
-                Daftar Sebagai Reseller <ArrowRight size={16} />
-              </button>
-            </motion.div>
+              {/* RESELLER */}
+              <motion.div {...fadeInUp} transition={{ delay: 0.2 }} className="glass bg-white/60 rounded-3xl p-8 border border-white shadow-xl min-w-[85%] sm:min-w-[70%] lg:min-w-0 snap-center">
+                <h3 className="text-2xl font-extrabold text-[#2d0f1e] mb-1">RESELLER</h3>
+                <p className="text-[#fd86a5] font-extrabold text-xl mb-6">Diskon 15%</p>
+                
+                <ul className="space-y-4 mb-8">
+                  <li className="flex items-start gap-3 text-sm text-[#7a3f58]">
+                    <CheckCircle2 size={18} className="text-[#fd86a5] shrink-0 mt-0.5" /> <span><b>Minimal Order:</b> Ambil 10 Paket.</span>
+                  </li>
+                  <li className="flex items-start gap-3 text-sm text-[#7a3f58]">
+                    <CheckCircle2 size={18} className="text-[#fd86a5] shrink-0 mt-0.5" /> <span><b>Biaya Registrasi:</b> Rp 350.000.</span>
+                  </li>
+                  <li className="flex items-start gap-3 text-sm text-[#7a3f58]">
+                    <CheckCircle2 size={18} className="text-[#fd86a5] shrink-0 mt-0.5" /> <span><b>Total Modal:</b> Rp 2.847.500 <s className="text-xs text-black/40">(Normal Rp 3.350.000)</s>.</span>
+                  </li>
+                  <li className="flex items-start gap-3 text-sm text-[#7a3f58]">
+                    <CheckCircle2 size={18} className="text-[#fd86a5] shrink-0 mt-0.5" /> <span><b>Keuntungan Penjualan:</b> Rp 284.750.</span>
+                  </li>
+                </ul>
+                <button onClick={() => window.open(WA_LINK, '_blank')} className="w-full py-4 rounded-xl text-[#2d0f1e] font-extrabold border-2 border-[#2d0f1e] hover:bg-[#2d0f1e] hover:text-white transition-colors flex justify-center items-center gap-2">
+                  Daftar Sebagai Reseller <ArrowRight size={16} />
+                </button>
+              </motion.div>
 
-            {/* DROPSHIPPER / AFFILIATE */}
-            <motion.div {...fadeInUp} transition={{ delay: 0.3 }} className="glass bg-white/60 rounded-3xl p-8 border border-white shadow-xl min-w-[85%] sm:min-w-[70%] lg:min-w-0 snap-center">
-              <h3 className="text-2xl font-extrabold text-[#2d0f1e] mb-1">DROPSHIPPER / AFFILIATE</h3>
-              <p className="text-[#fd86a5] font-extrabold text-xl mb-6">Fee Rp 35.000/Paket</p>
-              
-              <ul className="space-y-4 mb-8">
-                <li className="flex items-start gap-3 text-sm text-[#7a3f58]">
-                  <CheckCircle2 size={18} className="text-[#fd86a5] shrink-0 mt-0.5" /> <span><b>Biaya Registrasi:</b> Rp 335.000.</span>
-                </li>
-                <li className="flex items-start gap-3 text-sm text-[#7a3f58]">
-                  <CheckCircle2 size={18} className="text-[#fd86a5] shrink-0 mt-0.5" /> <span><b>Keuntungan:</b> Mendapatkan <i>fee</i> atau potongan harga sebesar Rp 35.000 per paket.</span>
-                </li>
-              </ul>
-              <button onClick={() => window.open(WA_LINK, '_blank')} className="w-full py-4 rounded-xl text-[#2d0f1e] font-extrabold border-2 border-[#2d0f1e] hover:bg-[#2d0f1e] hover:text-white transition-colors flex justify-center items-center gap-2 mt-auto">
-                Daftar Sekarang <ArrowRight size={16} />
-              </button>
-            </motion.div>
+              {/* DROPSHIPPER / AFFILIATE */}
+              <motion.div {...fadeInUp} transition={{ delay: 0.3 }} className="glass bg-white/60 rounded-3xl p-8 border border-white shadow-xl min-w-[85%] sm:min-w-[70%] lg:min-w-0 snap-center">
+                <h3 className="text-2xl font-extrabold text-[#2d0f1e] mb-1">DROPSHIPPER / AFFILIATE</h3>
+                <p className="text-[#fd86a5] font-extrabold text-xl mb-6">Fee Rp 35.000/Paket</p>
+                
+                <ul className="space-y-4 mb-8">
+                  <li className="flex items-start gap-3 text-sm text-[#7a3f58]">
+                    <CheckCircle2 size={18} className="text-[#fd86a5] shrink-0 mt-0.5" /> <span><b>Biaya Registrasi:</b> Rp 335.000.</span>
+                  </li>
+                  <li className="flex items-start gap-3 text-sm text-[#7a3f58]">
+                    <CheckCircle2 size={18} className="text-[#fd86a5] shrink-0 mt-0.5" /> <span><b>Keuntungan:</b> Mendapatkan <i>fee</i> atau potongan harga sebesar Rp 35.000 per paket.</span>
+                  </li>
+                </ul>
+                <button onClick={() => window.open(WA_LINK, '_blank')} className="w-full py-4 rounded-xl text-[#2d0f1e] font-extrabold border-2 border-[#2d0f1e] hover:bg-[#2d0f1e] hover:text-white transition-colors flex justify-center items-center gap-2 mt-auto">
+                  Daftar Sekarang <ArrowRight size={16} />
+                </button>
+              </motion.div>
+            </div>
+            <div className="lg:hidden flex items-center justify-center gap-2 mt-2 text-[#fd86a5]/60">
+              <span className="text-[10px] font-bold uppercase tracking-widest">Slide</span>
+              <div className="w-8 h-[1px] bg-[#fd86a5]/30"></div>
+            </div>
           </div>
         </div>
       </section>
