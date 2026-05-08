@@ -274,15 +274,58 @@ function InstagramFeed() {
   );
 }
 
+/* ─────────── TOP NAVIGATION (DESKTOP) ─────────── */
+function TopNav({ view, setView }: { view: string, setView: (v: any) => void }) {
+  const navItems = [
+    { id: 'landing', label: 'Home', icon: Home },
+    { id: 'shop', label: 'Product', icon: ShoppingBag },
+    { id: 'reseller', label: 'Reseller', icon: Users },
+  ];
+
+  return (
+    <div className="hidden lg:block fixed top-0 left-0 right-0 z-[100] bg-white/80 backdrop-blur-xl border-b border-[#fd86a5]/10 px-8 py-3 shadow-sm">
+      <div className="max-w-7xl mx-auto flex items-center justify-between">
+        <img src="/Isi/doface.svg" alt="Doface" className="h-8 cursor-pointer hover:opacity-80 transition-opacity" onClick={() => setView('landing')} />
+        
+        <div className="flex items-center gap-10">
+          {navItems.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => setView(item.id)}
+              className={`text-sm font-bold transition-all relative py-1 px-1 flex items-center gap-2 ${
+                view === item.id ? 'text-[#fd86a5]' : 'text-[#7a3f58] hover:text-[#fd86a5]'
+              }`}
+            >
+              <item.icon size={16} strokeWidth={view === item.id ? 2.5 : 2} />
+              {item.label}
+              {view === item.id && (
+                <motion.div layoutId="top-nav-pill" className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#fd86a5] rounded-full" />
+              )}
+            </button>
+          ))}
+        </div>
+
+        <div className="flex items-center gap-4">
+          <button onClick={() => window.open('https://wa.me/6281234567890', '_blank')} className="flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#25D366] text-white text-xs font-extrabold shadow-md hover:bg-[#20b858] transition-all hover:scale-105 active:scale-95 shadow-[#25D366]/20">
+            <MessageCircle size={14} strokeWidth={2.5} /> WhatsApp
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ─────────── APP WRAPPER ─────────── */
 export default function App() {
   const [view, setView] = useState<'landing' | 'shop' | 'reseller'>('landing');
 
   return (
-    <div className="w-screen h-[100dvh] overflow-hidden bg-white flex flex-col">
+    <div className="w-screen h-[100dvh] overflow-hidden bg-white flex flex-col selection:bg-[#fd86a5] selection:text-white">
+      <TopNav view={view} setView={setView} />
+      
       <div className="flex-1 overflow-hidden relative">
         <AnimatePresence mode="wait">
-          {view === 'landing' && <LandingPage key="landing" onExplore={() => setView('shop')} onReseller={() => setView('reseller')} />}
+          {view === 'landing' && <LandingPage key="landing" onExplore={() => setView('shop')} />}
           {view === 'shop' && <ShopPage key="shop" onBack={() => setView('landing')} />}
           {view === 'reseller' && <ResellerPage key="reseller" />}
         </AnimatePresence>
@@ -323,20 +366,12 @@ export default function App() {
 }
 
 /* ─────────── LANDING PAGE ─────────── */
-function LandingPage({ onExplore, onReseller }: { onExplore: () => void, onReseller: () => void }) {
+function LandingPage({ onExplore }: { onExplore: () => void }) {
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, filter: 'blur(10px)', scale: 1.05 }} transition={{ duration: 0.6 }} className="w-full h-full relative flex flex-col overflow-y-auto overflow-x-hidden thin-scroll bg-[#fff0f5]">
-      {/* Top Navigation */}
-      <div className="absolute top-4 left-0 right-0 px-5 lg:px-10 lg:top-8 z-30 flex justify-center lg:justify-between items-center">
-        <img src="/Isi/doface.svg" alt="Doface" className="h-7 lg:h-8" />
-        <div className="hidden lg:flex items-center gap-3">
-          <button onClick={onReseller} className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white text-[#fd86a5] border border-[#fd86a5] text-[10px] lg:text-xs font-bold shadow-sm hover:bg-[#fff0f5] transition-colors">
-            <Users size={14} /> Join Reseller
-          </button>
-          <button onClick={() => window.open('https://wa.me/6281234567890', '_blank')} className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#25D366] text-white text-[10px] lg:text-xs font-bold shadow-md hover:bg-[#20b858] transition-colors">
-            <MessageCircle size={14} /> WhatsApp
-          </button>
-        </div>
+      {/* Top Navigation (Mobile Only) */}
+      <div className="absolute top-4 left-0 right-0 px-5 z-30 flex justify-center lg:hidden items-center">
+        <img src="/Isi/doface.svg" alt="Doface" className="h-7" />
       </div>
 
       {/* Hero Section */}
@@ -479,7 +514,7 @@ function ShopPage({ onBack }: { onBack: () => void }) {
       {/* ══════ DESKTOP LEFT PANEL ══════ */}
       <div className="hidden lg:flex flex-col justify-between w-[340px] xl:w-[380px] shrink-0 px-8 py-8 z-20 relative">
         <div>
-          <div className="flex items-center justify-between mb-10">
+          <div className="flex items-center justify-between mb-10 lg:hidden">
             <div className="flex items-center gap-3">
               <button onClick={onBack} className="w-8 h-8 flex items-center justify-center rounded-full glass hover:bg-white/80 transition-colors shrink-0">
                 <ChevronLeft size={16} color="#8a4f66" />
@@ -490,6 +525,8 @@ function ShopPage({ onBack }: { onBack: () => void }) {
               <MessageCircle size={14} /> WhatsApp
             </button>
           </div>
+          
+          <div className="hidden lg:block pt-16"></div>
 
           <AnimatePresence mode="wait">
             <motion.div key={p.id + '-info'} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -16 }} transition={{ duration: 0.35 }}>
