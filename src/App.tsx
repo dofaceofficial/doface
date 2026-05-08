@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingBag, Plus, Minus, Star, X, ChevronLeft, ChevronRight, ArrowRight, ShieldCheck, Droplets, Leaf, Clock, Home, MessageCircle, Sparkles, Sun, Moon } from 'lucide-react';
+import { ShoppingBag, Plus, Minus, Star, X, ChevronLeft, ChevronRight, ArrowRight, ShieldCheck, Droplets, Leaf, Clock, Home, MessageCircle, Sparkles, Sun, Moon, Users } from 'lucide-react';
+import ResellerPage from './ResellerPage';
 
 /* ─────────── DATA ─────────── */
 interface Hotspot {
@@ -275,17 +276,15 @@ function InstagramFeed() {
 
 /* ─────────── APP WRAPPER ─────────── */
 export default function App() {
-  const [view, setView] = useState<'landing' | 'shop'>('landing');
+  const [view, setView] = useState<'landing' | 'shop' | 'reseller'>('landing');
 
   return (
     <div className="w-screen h-[100dvh] overflow-hidden bg-white flex flex-col">
       <div className="flex-1 overflow-hidden relative">
         <AnimatePresence mode="wait">
-          {view === 'landing' ? (
-            <LandingPage key="landing" onExplore={() => setView('shop')} />
-          ) : (
-            <ShopPage key="shop" onBack={() => setView('landing')} />
-          )}
+          {view === 'landing' && <LandingPage key="landing" onExplore={() => setView('shop')} onReseller={() => setView('reseller')} />}
+          {view === 'shop' && <ShopPage key="shop" onBack={() => setView('landing')} />}
+          {view === 'reseller' && <ResellerPage key="reseller" />}
         </AnimatePresence>
       </div>
 
@@ -307,6 +306,12 @@ export default function App() {
             <span className="text-[10px] font-bold" style={{ color: view === 'shop' ? '#fd86a5' : '#c09bab' }}>Product</span>
           </button>
 
+          <button onClick={() => setView('reseller')} className="flex flex-col items-center gap-1.5 flex-1 relative">
+            {view === 'reseller' && <motion.div layoutId="nav-pill" className="absolute -inset-x-2 -inset-y-1 bg-[#fd86a5]/10 rounded-xl" />}
+            <Users size={22} color={view === 'reseller' ? '#fd86a5' : '#c09bab'} strokeWidth={view === 'reseller' ? 2.5 : 2} />
+            <span className="text-[10px] font-bold" style={{ color: view === 'reseller' ? '#fd86a5' : '#c09bab' }}>Reseller</span>
+          </button>
+
           <button onClick={() => window.open('https://wa.me/6281234567890', '_blank')} className="flex flex-col items-center gap-1.5 flex-1 transition-transform active:scale-95">
             <MessageCircle size={22} color="#c09bab" strokeWidth={2} />
             <span className="text-[10px] font-bold" style={{ color: '#c09bab' }}>WhatsApp</span>
@@ -318,13 +323,16 @@ export default function App() {
 }
 
 /* ─────────── LANDING PAGE ─────────── */
-function LandingPage({ onExplore }: { onExplore: () => void }) {
+function LandingPage({ onExplore, onReseller }: { onExplore: () => void, onReseller: () => void }) {
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, filter: 'blur(10px)', scale: 1.05 }} transition={{ duration: 0.6 }} className="w-full h-full relative flex flex-col overflow-y-auto overflow-x-hidden thin-scroll bg-[#fff0f5]">
       {/* Top Navigation */}
       <div className="absolute top-4 left-0 right-0 px-5 lg:px-10 lg:top-8 z-30 flex justify-center lg:justify-between items-center">
         <img src="/Isi/doface.svg" alt="Doface" className="h-7 lg:h-8" />
         <div className="hidden lg:flex items-center gap-3">
+          <button onClick={onReseller} className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white text-[#fd86a5] border border-[#fd86a5] text-[10px] lg:text-xs font-bold shadow-sm hover:bg-[#fff0f5] transition-colors">
+            <Users size={14} /> Join Reseller
+          </button>
           <button onClick={() => window.open('https://wa.me/6281234567890', '_blank')} className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#25D366] text-white text-[10px] lg:text-xs font-bold shadow-md hover:bg-[#20b858] transition-colors">
             <MessageCircle size={14} /> WhatsApp
           </button>
