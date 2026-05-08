@@ -81,8 +81,10 @@ export default function ResellerPage() {
             <h2 className="text-3xl lg:text-4xl font-extrabold text-[#2d0f1e] mb-4">Pilih Level Kemitraanmu &<br />Nikmati Diskon Hingga 35%!</h2>
           </motion.div>
           
-          <div className="relative px-5 lg:px-0">
-            <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-6 lg:gap-8 no-scrollbar pb-6 lg:pb-0">
+          <div className="relative">
+            <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-6 lg:gap-8 no-scrollbar pb-6 lg:pb-0 scroll-px-5">
+              <div className="min-w-[20px] lg:hidden shrink-0" /> {/* Left Spacer */}
+              
               {/* AGEN */}
               <motion.div {...fadeInUp} className="relative glass bg-gradient-to-br from-white/80 to-[#fff0f5]/80 rounded-3xl p-8 border-2 border-[#fd86a5] shadow-2xl overflow-hidden min-w-[85%] sm:min-w-[70%] lg:min-w-0 snap-center">
                 <div className="absolute top-0 right-0 bg-gradient-to-l from-[#fd86a5] to-[#f8578c] text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl shadow-md">BEST VALUE</div>
@@ -173,6 +175,8 @@ export default function ResellerPage() {
                   Daftar Sekarang <ArrowRight size={16} />
                 </button>
               </motion.div>
+              
+              <div className="min-w-[20px] lg:hidden shrink-0" /> {/* Right Spacer */}
             </div>
             <div className="lg:hidden flex items-center justify-center gap-2 mt-2 text-[#fd86a5]/60">
               <span className="text-[10px] font-bold uppercase tracking-widest">Slide</span>
