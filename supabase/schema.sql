@@ -15,6 +15,7 @@ CREATE TABLE public.profiles (
   address TEXT,
   role user_role DEFAULT 'customer',
   points INTEGER DEFAULT 0,
+  total_commission BIGINT DEFAULT 0,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL,
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
 );
