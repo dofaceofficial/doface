@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Cart from './pages/Cart';
 import Dashboard from './pages/Dashboard';
+import AdminDashboard from './pages/AdminDashboard';
 import { supabase } from './lib/supabase';
 import { useAuth } from './contexts/AuthContext';
 import { useCart } from './contexts/CartContext';
@@ -419,6 +420,7 @@ export default function App() {
       <Route path="/register" element={<Register />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/admin" element={<AdminDashboard />} />
     </Routes>
   );
 }

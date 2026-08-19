@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { supabase } from '../lib/supabase';
 import { useNavigate, Link } from 'react-router-dom';
-import { LogOut, Package, Star, Clock, MapPin, ChevronRight, ShoppingBag } from 'lucide-react';
+import { LogOut, Package, Star, Clock, MapPin, ChevronRight, ShoppingBag, ShieldCheck } from 'lucide-react';
 
 const fmt = (v: number) => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(v);
 
@@ -70,7 +70,12 @@ export default function Dashboard() {
             </div>
           </div>
           
-          <div className="flex gap-3">
+          <div className="flex gap-3 flex-wrap justify-end">
+            {profile.role === 'admin' && (
+              <Link to="/admin" className="px-5 py-2.5 rounded-full border-2 border-emerald-500 text-emerald-600 font-bold text-sm hover:bg-emerald-50 transition-colors flex items-center gap-2">
+                <ShieldCheck size={16} /> Admin Panel
+              </Link>
+            )}
             <Link to="/" className="px-5 py-2.5 rounded-full border-2 border-pink-100 text-[#7a3f58] font-bold text-sm hover:bg-pink-50 transition-colors flex items-center gap-2">
               <ShoppingBag size={16} /> Belanja
             </Link>
