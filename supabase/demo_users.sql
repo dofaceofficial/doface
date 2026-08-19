@@ -21,22 +21,22 @@ BEGIN
   INSERT INTO auth.users (id, instance_id, email, encrypted_password, email_confirmed_at, created_at, updated_at, raw_app_meta_data, raw_user_meta_data, is_super_admin, role)
   VALUES (admin_id, '00000000-0000-0000-0000-000000000000', 'admin@doface.com', crypt('password123', gen_salt('bf')), now(), now(), now(), '{"provider":"email","providers":["email"]}', '{"full_name":"Admin Utama"}', false, 'authenticated');
   
-  INSERT INTO auth.identities (id, user_id, identity_data, provider, created_at, updated_at)
-  VALUES (gen_random_uuid(), admin_id, format('{"sub":"%s","email":"%s"}', admin_id::text, 'admin@doface.com')::jsonb, 'email', now(), now());
+  INSERT INTO auth.identities (id, user_id, identity_data, provider, provider_id, email, created_at, updated_at)
+  VALUES (gen_random_uuid(), admin_id, format('{"sub":"%s","email":"%s"}', admin_id::text, 'admin@doface.com')::jsonb, 'email', admin_id::text, 'admin@doface.com', now(), now());
 
   -- 2. Buat User Agen (agen@doface.com / password123)
   INSERT INTO auth.users (id, instance_id, email, encrypted_password, email_confirmed_at, created_at, updated_at, raw_app_meta_data, raw_user_meta_data, is_super_admin, role)
   VALUES (agen_id, '00000000-0000-0000-0000-000000000000', 'agen@doface.com', crypt('password123', gen_salt('bf')), now(), now(), now(), '{"provider":"email","providers":["email"]}', '{"full_name":"Budi (Agen Resmi)"}', false, 'authenticated');
 
-  INSERT INTO auth.identities (id, user_id, identity_data, provider, created_at, updated_at)
-  VALUES (gen_random_uuid(), agen_id, format('{"sub":"%s","email":"%s"}', agen_id::text, 'agen@doface.com')::jsonb, 'email', now(), now());
+  INSERT INTO auth.identities (id, user_id, identity_data, provider, provider_id, email, created_at, updated_at)
+  VALUES (gen_random_uuid(), agen_id, format('{"sub":"%s","email":"%s"}', agen_id::text, 'agen@doface.com')::jsonb, 'email', agen_id::text, 'agen@doface.com', now(), now());
 
   -- 3. Buat User Affiliate (affiliate@doface.com / password123)
   INSERT INTO auth.users (id, instance_id, email, encrypted_password, email_confirmed_at, created_at, updated_at, raw_app_meta_data, raw_user_meta_data, is_super_admin, role)
   VALUES (affiliate_id, '00000000-0000-0000-0000-000000000000', 'affiliate@doface.com', crypt('password123', gen_salt('bf')), now(), now(), now(), '{"provider":"email","providers":["email"]}', '{"full_name":"Siti (Affiliator)"}', false, 'authenticated');
 
-  INSERT INTO auth.identities (id, user_id, identity_data, provider, created_at, updated_at)
-  VALUES (gen_random_uuid(), affiliate_id, format('{"sub":"%s","email":"%s"}', affiliate_id::text, 'affiliate@doface.com')::jsonb, 'email', now(), now());
+  INSERT INTO auth.identities (id, user_id, identity_data, provider, provider_id, email, created_at, updated_at)
+  VALUES (gen_random_uuid(), affiliate_id, format('{"sub":"%s","email":"%s"}', affiliate_id::text, 'affiliate@doface.com')::jsonb, 'email', affiliate_id::text, 'affiliate@doface.com', now(), now());
 
   -- Catatan: Trigger handle_new_user() sudah otomatis membuatkan baris di public.profiles untuk 3 user di atas dengan role 'customer'.
   
