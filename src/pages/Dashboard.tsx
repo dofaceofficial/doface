@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { supabase } from '../lib/supabase';
 import { useNavigate, Link } from 'react-router-dom';
-import { LogOut, Package, Star, Clock, MapPin, ChevronRight, ShoppingBag, ShieldCheck } from 'lucide-react';
+import { LogOut, Package, Star, Clock, ShoppingBag, ShieldCheck } from 'lucide-react';
 
 const fmt = (v: number) => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(v);
 

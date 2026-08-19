@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { Session, User } from '@supabase/supabase-js';
+import type { Session, User } from '@supabase/supabase-js';
 import { supabase } from '../lib/supabase';
 
 // Define the custom profile type extending the Supabase User
@@ -10,6 +10,7 @@ export type Profile = {
   address: string | null;
   role: 'customer' | 'reseller' | 'sub_agen' | 'agen' | 'dropshipper' | 'affiliate' | 'admin';
   points: number;
+  total_commission: number;
 };
 
 type AuthContextType = {

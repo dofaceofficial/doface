@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ShoppingBag, Plus, Minus, Star, X, ChevronLeft, ChevronRight, ArrowRight, ShieldCheck, Droplets, Leaf, Clock, Home, MessageCircle, Sparkles, Sun, Moon, Users, ShoppingCart, User } from 'lucide-react';
 import { Routes, Route, useNavigate, Link } from 'react-router-dom';
-import { useEffect } from 'react';
 import ResellerPage from './ResellerPage';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -298,8 +298,6 @@ function InstagramFeed() {
     </div>
   );
 }
-
-import { Link } from 'react-router-dom';
 
 /* ─────────── TOP NAVIGATION (DESKTOP) ─────────── */
 function TopNav({ view, setView }: { view: string, setView: (v: any) => void }) {

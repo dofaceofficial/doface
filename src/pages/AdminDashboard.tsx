@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { supabase } from '../lib/supabase';
 import { useNavigate } from 'react-router-dom';
-import { ShieldCheck, Package, Users, DollarSign, CheckCircle, XCircle } from 'lucide-react';
+import { ShieldCheck, Package, Users, DollarSign } from 'lucide-react';
 
 const fmt = (v: number) => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(v);
 

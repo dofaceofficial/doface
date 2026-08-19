@@ -10,7 +10,7 @@ const fmt = (v: number) => new Intl.NumberFormat('id-ID', { style: 'currency', c
 
 export default function Cart() {
   const { items, updateQuantity, removeItem, clearCart, totalPrice, totalItems } = useCart();
-  const { profile, session } = useAuth();
+  const { session } = useAuth();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
