@@ -1,7 +1,15 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingBag, Plus, Minus, Star, X, ChevronLeft, ChevronRight, ArrowRight, ShieldCheck, Droplets, Leaf, Clock, Home, MessageCircle, Sparkles, Sun, Moon, Users } from 'lucide-react';
+import { ShoppingBag, Plus, Minus, Star, X, ChevronLeft, ChevronRight, ArrowRight, ShieldCheck, Droplets, Leaf, Clock, Home, MessageCircle, Sparkles, Sun, Moon, Users, ShoppingCart, User } from 'lucide-react';
+import { Routes, Route, useNavigate, Link } from 'react-router-dom';
+import { useEffect } from 'react';
 import ResellerPage from './ResellerPage';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Cart from './pages/Cart';
+import Dashboard from './pages/Dashboard';
+import { supabase } from './lib/supabase';
+import { useAuth } from './contexts/AuthContext';
+import { useCart } from './contexts/CartContext';
 
 /* ─────────── DATA ─────────── */
 interface Hotspot {
@@ -14,6 +22,22 @@ interface Product {
   img: string; heroImg: string;
   accent: string; bg1: string; bg2: string;
   hotspots: Hotspot[];
+}
+
+// Database Product Type
+export interface DBProduct {
+  id: string;
+  name: string;
+  slug: string;
+  description: string;
+  size: string;
+  base_price: number;
+  agent_price: number;
+  sub_agent_price: number;
+  reseller_price: number;
+  dropshipper_price: number;
+  image_url: string;
+  stock: number;
 }
 
 const PRODUCTS: Product[] = [
@@ -274,8 +298,11 @@ function InstagramFeed() {
   );
 }
 
+import { Link } from 'react-router-dom';
+
 /* ─────────── TOP NAVIGATION (DESKTOP) ─────────── */
 function TopNav({ view, setView }: { view: string, setView: (v: any) => void }) {
+  const { totalItems } = useCart();
   const navItems = [
     { id: 'landing', label: 'Home', icon: Home },
     { id: 'shop', label: 'Product', icon: ShoppingBag },
@@ -306,6 +333,15 @@ function TopNav({ view, setView }: { view: string, setView: (v: any) => void }) 
         </div>
 
         <div className="flex items-center gap-4">
+          <Link to="/cart" className="relative p-2 text-[#7a3f58] hover:text-[#fd86a5] transition-colors">
+            <ShoppingCart size={20} />
+            {totalItems > 0 && (
+              <span className="absolute top-0 right-0 w-4 h-4 bg-[#fd86a5] text-white text-[10px] font-bold rounded-full flex items-center justify-center">{totalItems}</span>
+            )}
+          </Link>
+          <Link to="/dashboard" className="text-sm font-bold text-[#7a3f58] hover:text-[#fd86a5] transition-colors">
+            Portal
+          </Link>
           <button onClick={() => window.open('https://wa.me/6281234567890', '_blank')} className="flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#25D366] text-white text-xs font-extrabold shadow-md hover:bg-[#20b858] transition-all hover:scale-105 active:scale-95 shadow-[#25D366]/20">
             <MessageCircle size={14} strokeWidth={2.5} /> WhatsApp
           </button>
@@ -315,9 +351,11 @@ function TopNav({ view, setView }: { view: string, setView: (v: any) => void }) 
   );
 }
 
-/* ─────────── APP WRAPPER ─────────── */
-export default function App() {
+/* ─────────── MAIN LAYOUT (Legacy View State) ─────────── */
+function MainLayout() {
   const [view, setView] = useState<'landing' | 'shop' | 'reseller'>('landing');
+  const { totalItems } = useCart();
+  const navigate = useNavigate();
 
   return (
     <div className="w-screen h-[100dvh] overflow-hidden bg-white flex flex-col selection:bg-[#fd86a5] selection:text-white">
@@ -344,7 +382,6 @@ export default function App() {
             {view === 'shop' && <motion.div layoutId="nav-pill" className="absolute -inset-x-2 -inset-y-1 bg-[#fd86a5]/10 rounded-xl" />}
             <div className="relative">
               <ShoppingBag size={22} color={view === 'shop' ? '#fd86a5' : '#c09bab'} strokeWidth={view === 'shop' ? 2.5 : 2} />
-              {view !== 'shop' && <span className="absolute -top-1 -right-1 w-2 h-2 bg-[#fd86a5] rounded-full border-2 border-white"></span>}
             </div>
             <span className="text-[10px] font-bold" style={{ color: view === 'shop' ? '#fd86a5' : '#c09bab' }}>Product</span>
           </button>
@@ -355,13 +392,34 @@ export default function App() {
             <span className="text-[10px] font-bold" style={{ color: view === 'reseller' ? '#fd86a5' : '#c09bab' }}>Reseller</span>
           </button>
 
-          <button onClick={() => window.open('https://wa.me/6281234567890', '_blank')} className="flex flex-col items-center gap-1.5 flex-1 transition-transform active:scale-95">
-            <MessageCircle size={22} color="#c09bab" strokeWidth={2} />
-            <span className="text-[10px] font-bold" style={{ color: '#c09bab' }}>WhatsApp</span>
+          <button onClick={() => navigate('/cart')} className="flex flex-col items-center gap-1.5 flex-1 relative">
+            <div className="relative">
+              <ShoppingCart size={22} color="#c09bab" strokeWidth={2} />
+              {totalItems > 0 && <span className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-[#fd86a5] text-white text-[8px] font-bold rounded-full flex items-center justify-center border-2 border-white">{totalItems}</span>}
+            </div>
+            <span className="text-[10px] font-bold" style={{ color: '#c09bab' }}>Cart</span>
+          </button>
+
+          <button onClick={() => navigate('/dashboard')} className="flex flex-col items-center gap-1.5 flex-1 relative transition-transform active:scale-95">
+            <User size={22} color="#c09bab" strokeWidth={2} />
+            <span className="text-[10px] font-bold" style={{ color: '#c09bab' }}>Portal</span>
           </button>
         </div>
       </div>
     </div>
+  );
+}
+
+/* ─────────── APP ROUTER ─────────── */
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<MainLayout />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/cart" element={<Cart />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+    </Routes>
   );
 }
 
@@ -489,8 +547,54 @@ function ShopPage({ onBack }: { onBack: () => void }) {
   const [qty, setQty] = useState(1);
   const [hotspot, setHotspot] = useState<string | null>(null);
   const [touchX, setTouchX] = useState<number | null>(null);
+  
+  const [dbProducts, setDbProducts] = useState<DBProduct[]>([]);
+  const { profile } = useAuth();
+  const { addItem } = useCart();
+  const navigate = useNavigate();
 
-  const p = PRODUCTS[idx];
+  useEffect(() => {
+    async function fetchProducts() {
+      const { data } = await supabase.from('products').select('*').eq('is_active', true);
+      if (data) setDbProducts(data as DBProduct[]);
+    }
+    fetchProducts();
+  }, []);
+
+  // Merge static UI data with dynamic DB data
+  const mergedProducts = PRODUCTS.map(staticProd => {
+    // Map static ID to DB Slug (e.g. 'bundle' -> 'paket-lengkap', 'facewash' -> 'refreshing-facewash')
+    let slug = staticProd.id;
+    if (slug === 'bundle') slug = 'paket-lengkap';
+    if (slug === 'facewash') slug = 'refreshing-facewash';
+    if (slug === 'daycream') slug = 'glow-day-cream';
+    if (slug === 'nightcream') slug = 'collagen-night-cream';
+    
+    const dbData = dbProducts.find(db => db.slug === slug);
+    
+    // Determine price based on role
+    let activePrice = staticProd.price;
+    if (dbData) {
+      activePrice = dbData.base_price;
+      if (profile?.role === 'reseller') activePrice = dbData.reseller_price;
+      if (profile?.role === 'sub_agen') activePrice = dbData.sub_agent_price;
+      if (profile?.role === 'agen') activePrice = dbData.agent_price;
+      if (profile?.role === 'dropshipper') activePrice = dbData.dropshipper_price;
+    }
+
+    return {
+      ...staticProd,
+      dbId: dbData?.id || null, // Capture UUID for Cart
+      name: dbData?.name || staticProd.name,
+      desc: dbData?.description || staticProd.desc,
+      size: dbData?.size || staticProd.size,
+      price: activePrice,
+      originalPrice: dbData ? (dbData.base_price > activePrice ? dbData.base_price : staticProd.originalPrice) : staticProd.originalPrice,
+    };
+  });
+
+  const displayProducts = mergedProducts;
+  const p = displayProducts[idx];
 
   const goTo = (i: number) => {
     if (i === idx) return;
@@ -499,10 +603,25 @@ function ShopPage({ onBack }: { onBack: () => void }) {
     setQty(1);
     setHotspot(null);
   };
-  const next = () => goTo((idx + 1) % PRODUCTS.length);
-  const prev = () => goTo((idx - 1 + PRODUCTS.length) % PRODUCTS.length);
+  const next = () => goTo((idx + 1) % displayProducts.length);
+  const prev = () => goTo((idx - 1 + displayProducts.length) % displayProducts.length);
 
   const toggleHotspot = (id: string) => setHotspot(h => h === id ? null : id);
+
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (p.dbId) {
+      addItem({
+        id: p.dbId,
+        name: p.name,
+        size: p.size,
+        price: p.price,
+        quantity: qty,
+        image_url: p.img,
+      });
+      // Optional: Add toast notification
+    }
+  };
 
   return (
     <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }} className="w-full h-full flex flex-col lg:flex-row relative" style={{ background: `linear-gradient(145deg, ${p.bg1} 0%, ${p.bg2} 100%)`, transition: 'background 0.5s ease' }} onClick={() => setHotspot(null)}>
@@ -563,8 +682,11 @@ function ShopPage({ onBack }: { onBack: () => void }) {
                 <span className="text-sm font-semibold ml-2" style={{ color: '#b87990' }}>Total: {fmt(p.price * qty)}</span>
               </div>
 
-              <motion.button whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} onClick={e => { e.stopPropagation(); }} className="w-full flex items-center justify-center gap-2 py-4 rounded-2xl text-white font-bold text-sm" style={{ background: `linear-gradient(135deg, ${p.accent}, #f8578c)`, boxShadow: `0 6px 24px ${p.accent}55` }}>
-                <ShoppingBag size={16} /> Beli via WhatsApp <ChevronRight size={16} />
+              <motion.button whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} onClick={handleAddToCart} className="w-full flex items-center justify-center gap-2 py-4 rounded-2xl text-white font-bold text-sm mb-3" style={{ background: `linear-gradient(135deg, ${p.accent}, #f8578c)`, boxShadow: `0 6px 24px ${p.accent}55` }}>
+                <ShoppingBag size={16} /> Tambah ke Keranjang
+              </motion.button>
+              <motion.button whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} onClick={e => { handleAddToCart(e); navigate('/cart'); }} className="w-full flex items-center justify-center gap-2 py-4 rounded-2xl bg-white font-bold text-sm transition-colors border" style={{ borderColor: p.accent, color: p.accent }}>
+                Beli Sekarang <ArrowRight size={16} />
               </motion.button>
             </motion.div>
           </AnimatePresence>
@@ -574,7 +696,7 @@ function ShopPage({ onBack }: { onBack: () => void }) {
         <div className="flex flex-col gap-2">
           <p className="text-[10px] font-bold uppercase tracking-widest text-[#b87990]">Pilih Produk</p>
           <div className="flex gap-2">
-            {PRODUCTS.map((pr, i) => (
+            {displayProducts.map((pr, i) => (
               <motion.button key={pr.id} onClick={() => goTo(i)} animate={{ width: i === idx ? 28 : 7 }} className="h-2 rounded-full transition-colors duration-300" style={{ background: i === idx ? p.accent : p.accent + '44' }} />
             ))}
           </div>
@@ -620,7 +742,7 @@ function ShopPage({ onBack }: { onBack: () => void }) {
       {/* ══════ MOBILE: TOP BAR ══════ */}
       <div className="lg:hidden absolute top-0 left-0 right-0 z-30 flex flex-col px-4 pt-4 pb-2" style={{ background: 'transparent' }}>
         <div className="flex gap-1.5 overflow-x-auto thin-scroll no-scrollbar pb-2">
-          {PRODUCTS.map((pr, i) => (
+          {displayProducts.map((pr, i) => (
             <button key={pr.id} onClick={() => goTo(i)} className="px-3 py-2 rounded-full text-[10px] font-bold transition-all duration-300 whitespace-nowrap shrink-0 flex items-center gap-1.5" style={{ background: i === idx ? p.accent : 'rgba(255,255,255,0.7)', color: i === idx ? 'white' : '#8a4f66', border: `1px solid ${i === idx ? p.accent : 'rgba(255,255,255,0.9)'}`, boxShadow: i === idx ? `0 4px 14px ${p.accent}55` : 'none' }}>
               <pr.icon size={12} /> {pr.sub}
             </button>
@@ -665,7 +787,7 @@ function ShopPage({ onBack }: { onBack: () => void }) {
                 <button onClick={() => setQty(q => q + 1)} className="w-6 h-6 rounded-full bg-white flex items-center justify-center shadow-sm"><Plus size={10} color="#8a4f66" /></button>
               </div>
 
-              <motion.button whileTap={{ scale: 0.95 }} className="flex items-center justify-center px-4 py-3 rounded-xl text-white font-bold text-sm shrink-0" style={{ background: `linear-gradient(135deg, ${p.accent}, #f8578c)`, boxShadow: `0 4px 16px ${p.accent}55` }}>
+              <motion.button whileTap={{ scale: 0.95 }} onClick={handleAddToCart} className="flex items-center justify-center px-4 py-3 rounded-xl text-white font-bold text-sm shrink-0" style={{ background: `linear-gradient(135deg, ${p.accent}, #f8578c)`, boxShadow: `0 4px 16px ${p.accent}55` }}>
                 <ShoppingBag size={14} />
               </motion.button>
             </div>
